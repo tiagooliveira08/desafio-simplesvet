@@ -1,6 +1,7 @@
 <?php
 use SimplesVet\Lite\Controllers\Proprietario;
 use SimplesVet\Lite\Controllers\Usuario;
+use SimplesVet\Lite\Controllers\Animal;
 
 $app->group('/proprietarios', function(){
     $this->get('', Proprietario::class . ':index');
@@ -15,4 +16,12 @@ $app->group('/usuarios', function(){
     $this->get('/{codigo}', Usuario::class . ':show');
     $this->put('/{codigo}', Usuario::class . ':update');
     $this->delete('/{codigo}', Usuario::class . ':destroy');
+});
+
+$app->group('/animais', function(){
+    $this->get('', Animal::class . ':index');
+    $this->post('', Animal::class . ':store');
+    $this->get('/{codigo}', Animal::class . ':show');
+    $this->put('/{codigo}', Animal::class . ':update');
+    $this->delete('/{codigo}', Animal::class . ':destroy');
 });

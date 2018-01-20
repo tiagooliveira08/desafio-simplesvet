@@ -1,13 +1,21 @@
 <?php
-require_once("animal.php");
+namespace SimplesVet\Lite\Models;
 
-class AnimalDao {
-    /** @param Animal $animal */
-    public function selectByIdForm($animal) {
+use SimplesVet\Genesis\GDbMysql;
+use SimplesVet\Genesis\GDbException;
+use SimplesVet\Lite\Entities\Animal as AnimalEntity;
+
+class Animal 
+{
+    /** 
+     * @param Animal $animal 
+     */
+    public function selectByIdForm(AnimalEntity $animal) 
+    {
         $ret = array();
         try {
             $mysql = new GDbMysql();
-            $mysql->execute("SELECT ani_int_codigo,ani_var_nome,ani_cha_vivo,ani_dec_peso,ani_var_raca FROM vw_animal WHERE ani_int_codigo = ? ", array("i", $animal->getAni_int_codigo()), true, MYSQL_ASSOC);
+            $mysql->execute("SELECT ani_int_codigo,ani_var_nome,ani_cha_vivo,ani_dec_peso,ani_var_raca FROM vw_animal WHERE ani_int_codigo = ? ", array("i", $animal->getCodigo()), true, MYSQL_ASSOC);
             if ($mysql->fetch()) {
                 $ret = $mysql->res;
             }
@@ -18,16 +26,19 @@ class AnimalDao {
         return $ret;
     }
 
-    /** @param Animal $animal */
-    public function insert($animal) {
-
+    /** 
+     * @param Animal $animal 
+     */
+    public function insert(AnimalEntity $animal) 
+    {
         $return = array();
         $param = array("sdss",
-            $animal->getAni_var_nome(),
-            $animal->getAni_dec_peso(),
-            $animal->getAni_var_raca(),
-            $animal->getAni_cha_vivo()           
-            );
+            $animal->getNome(),
+            $animal->getPeso(),
+            $animal->getRaca(),
+            $animal->getVivo()           
+        );
+
         try{
             $mysql = new GDbMysql();
             $mysql->execute("CALL sp_animal_ins(?,?,?,?, @p_status, @p_msg, @p_insert_id);", $param, false);
@@ -44,16 +55,20 @@ class AnimalDao {
         return $return;
     }
 
-    /** @param Animal $animal */
-    public function update($animal) {
-
+    /** 
+     * @param Animal $animal 
+     */
+    public function update(AnimalEntity $animal) 
+    {
         $return = array();
         $param = array("isdss",
-            $animal->getAni_int_codigo(),
-            $animal->getAni_var_nome(),
-            $animal->getAni_dec_peso(),
-            $animal->getAni_var_raca(),
-            $animal->getAni_cha_vivo());
+            $animal->getCodigo(),
+            $animal->getNome(),
+            $animal->getPeso(),
+            $animal->getRaca(),
+            $animal->getVivo()
+        );
+
         try{
             $mysql = new GDbMysql();
             $mysql->execute("CALL sp_animal_upd(?,?,?,?,?, @p_status, @p_msg);", $param, false);
@@ -69,11 +84,13 @@ class AnimalDao {
         return $return;
     }
 
-    /** @param Animal $animal */
-    public function delete($animal) {
-
+    /** 
+     * @param Animal $animal 
+     */
+    public function delete(AnimalEntity $animal) 
+    {
         $return = array();
-        $param = array("i",$animal->getAni_int_codigo());
+        $param = array("i",$animal->getCodigo());
         try {
             $mysql = new GDbMysql();
             $mysql->execute("CALL sp_animal_del(?, @p_status, @p_msg);", $param, false);
