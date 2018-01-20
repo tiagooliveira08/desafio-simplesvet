@@ -7,7 +7,10 @@ class Animal
 	private $ani_var_nome;
 	private $ani_cha_vivo;
 	private $ani_dec_peso;
-	private $ani_var_raca;
+	/* @var $raca Raca */
+	private $raca;
+	/* @var $proprietario Proprietario */
+	private $proprietario;
 
 	public function getCodigo() 
 	{
@@ -51,11 +54,21 @@ class Animal
 
 	public function getRaca() 
 	{
-		return $this->ani_var_raca;
+		return $this->raca;
 	}
 
-	public function setRaca($raca) 
+	public function setRaca(Raca $raca) 
 	{
-		$this->ani_var_raca = $raca;
+		$this->raca = $raca;
+	}
+
+	public function getProprietario() 
+	{
+		return $this->proprietario;
+	}
+
+	public function setProprietario(Proprietario $proprietario) 
+	{
+		$this->proprietario = $proprietario;
 	}
 }
