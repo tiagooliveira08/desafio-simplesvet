@@ -6,7 +6,7 @@ use SimplesVet\Lite\Controllers\Vacina;
 use SimplesVet\Lite\Controllers\AnimalVacina;
 use SimplesVet\Lite\Controllers\Raca;
 
-$app->group('/proprietarios', function(){
+$app->group('/proprietarios', function () {
     $this->get('', Proprietario::class . ':index');
     $this->post('', Proprietario::class . ':store');
     $this->get('/{codigo}', Proprietario::class . ':show');
@@ -14,14 +14,14 @@ $app->group('/proprietarios', function(){
     $this->delete('/{codigo}', Proprietario::class . ':destroy');
 });
 
-$app->group('/usuarios', function(){
+$app->group('/usuarios', function () {
     $this->post('', Usuario::class . ':store');
     $this->get('/{codigo}', Usuario::class . ':show');
     $this->put('/{codigo}', Usuario::class . ':update');
     $this->delete('/{codigo}', Usuario::class . ':destroy');
 });
 
-$app->group('/animais', function(){
+$app->group('/animais', function () {
     $this->get('', Animal::class . ':index');
     $this->post('', Animal::class . ':store');
     $this->get('/{codigo}', Animal::class . ':show');
@@ -29,7 +29,7 @@ $app->group('/animais', function(){
     $this->delete('/{codigo}', Animal::class . ':destroy');
 });
 
-$app->group('/vacinas', function(){
+$app->group('/vacinas', function () {
     $this->get('', Vacina::class . ':index');
     $this->get('/animal/{codigo_animal}', AnimalVacina::class . ':showByAnimal');
     $this->post('/aplicacao', AnimalVacina::class . ':store');
@@ -38,7 +38,7 @@ $app->group('/vacinas', function(){
     $this->post('/aplicacao/{codigo}/aplicar', AnimalVacina::class . ':aplicar');
 });
 
-$app->group('/racas', function() {
+$app->group('/racas', function () {
     $this->get('', Raca::class . ':index');
     $this->post('', Raca::class . ':store');
     $this->get('/{codigo}', Raca::class . ':show');

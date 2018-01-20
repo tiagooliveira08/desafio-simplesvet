@@ -6,7 +6,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 use SimplesVet\Lite\Entities\Raca as RacaEntity;
 use SimplesVet\Lite\Models\Raca as RacaModel;
 
-class Raca 
+class Raca
 {
     public function index(Request $request, Response $response, $args)
     {

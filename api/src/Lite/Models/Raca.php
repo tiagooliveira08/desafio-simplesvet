@@ -5,17 +5,19 @@ use SimplesVet\Genesis\GDbMysql;
 use SimplesVet\Genesis\GDbException;
 use SimplesVet\Lite\Entities\Raca as RacaEntity;
 
-class Raca 
+class Raca
 {
-    public static function getAll() 
+    public static function getAll()
     {
-        $return = array();
+        $return = [];
       
         try {
             $mysql = new GDbMysql();
 
-            $return = $mysql->executeAll("SELECT rac_int_codigo as codigo, rac_var_nome as nome FROM vw_raca");
-      
+            $return = $mysql->executeAll("
+                SELECT rac_int_codigo as codigo, 
+                       rac_var_nome as nome 
+                FROM vw_raca");
         } catch (GDbException $e) {
             echo $e->getError();
         }
@@ -23,21 +25,28 @@ class Raca
         return $return;
     }
 
-    /** 
+    /**
      * @param Raca $raca
      */
-    public static function selectByIdForm(RacaEntity $raca) 
+    public static function selectByIdForm(RacaEntity $raca)
     {
-        $return = array();
+        $return = [];
       
         try {
             $mysql = new GDbMysql();
-            $mysql->execute("SELECT rac_int_codigo as codigo, rac_var_nome as nome FROM vw_raca WHERE rac_int_codigo = ? ", array("i", $raca->getCodigo()), true, MYSQLI_ASSOC);
+            $mysql->execute(
+                "
+                SELECT rac_int_codigo as codigo, 
+                       rac_var_nome as nome 
+                FROM vw_raca WHERE rac_int_codigo = ? ",
+                ["i", $raca->getCodigo()],
+                true,
+                MYSQLI_ASSOC
+            );
     
             $return = ($mysql->fetch()) ? $mysql->res : [];
       
             $mysql->close();
-      
         } catch (GDbException $e) {
             echo $e->getError();
         }
@@ -46,17 +55,17 @@ class Raca
     }
 
     
-    /** 
-     * @param Raca $raca 
+    /**
+     * @param Raca $raca
      */
-    public static function insert(RacaEntity $raca) 
+    public static function insert(RacaEntity $raca)
     {
-        $return = array();
-        $param = array("s",
+        $return = [];
+        $param = ["s",
             $raca->getNome()
-        );
+        ];
 
-        try{
+        try {
             $mysql = new GDbMysql();
             $mysql->execute("CALL sp_raca_ins(?, @p_status, @p_msg, @p_insert_id);", $param, false);
             $mysql->execute("SELECT @p_status, @p_msg, @p_insert_id");
@@ -71,5 +80,4 @@ class Raca
         }
         return $return;
     }
-   
 }

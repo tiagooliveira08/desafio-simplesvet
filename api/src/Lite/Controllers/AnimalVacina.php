@@ -11,7 +11,7 @@ use SimplesVet\Lite\Models\AnimalVacina as AnimalVacinaModel;
 
 class AnimalVacina
 {
-    public function show(Request $request, Response $response, $args) 
+    public function show(Request $request, Response $response, $args)
     {
         $codigo = $request->getAttribute('codigo');
     
@@ -24,7 +24,7 @@ class AnimalVacina
         return $response->withJson($data, $code);
     }
 
-    public function showByAnimal(Request $request, Response $response, $args) 
+    public function showByAnimal(Request $request, Response $response, $args)
     {
         $codigo = $request->getAttribute('codigo_animal');
 
@@ -66,7 +66,7 @@ class AnimalVacina
         return $response->withJson($data, $code);
     }
 
-    public function destroy(Request $request, Response $response, $args) 
+    public function destroy(Request $request, Response $response, $args)
     {
         $codigo = $request->getAttribute('codigo');
     
@@ -79,7 +79,7 @@ class AnimalVacina
         return $response->withJson($data, $code);
     }
 
-    public function aplicar(Request $request, Response $response, $args) 
+    public function aplicar(Request $request, Response $response, $args)
     {
         $body = $request->getParsedBody();
         $codigo = $request->getAttribute('codigo');
@@ -91,7 +91,7 @@ class AnimalVacina
         $animal->setCodigo($body['codigo_animal']);
     
         $animalVacina = new AnimalVacinaEntity();
-        $animalVacina->setCodigo($codigo); 
+        $animalVacina->setCodigo($codigo);
         $animalVacina->setUsuario($usuario);
         $animalVacina->setAnimal($animal);
 

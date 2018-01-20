@@ -5,16 +5,19 @@ use SimplesVet\Genesis\GDbMysql;
 use SimplesVet\Genesis\GDbException;
 use SimplesVet\Lite\Entities\Vacina as VacinaEntity;
 
-class Vacina 
+class Vacina
 {
-    public static function getAll() {
-        $return = array();
+    public static function getAll()
+    {
+        $return = [];
       
         try {
             $mysql = new GDbMysql();
 
-            $return = $mysql->executeAll("SELECT vac_int_codigo as codigo, vac_var_nome as nome FROM vw_vacina");
-      
+            $return = $mysql->executeAll("
+                SELECT vac_int_codigo as codigo, 
+                       vac_var_nome as nome 
+                FROM vw_vacina");
         } catch (GDbException $e) {
             echo $e->getError();
         }
@@ -22,15 +25,25 @@ class Vacina
         return $return;
     }
 
-    /** 
-     * @param Vacina $vacina 
+    /**
+     * @param Vacina $vacina
      */
-    public function selectByIdForm(VacinaEntity $vacina) 
+    public function selectByIdForm(VacinaEntity $vacina)
     {
-        $ret = array();
+        $ret = [];
         try {
             $mysql = new GDbMysql();
-            $mysql->execute("SELECT vac_int_codigo as codigo, vac_var_nome as nome FROM vw_vacina WHERE vac_int_codigo = ? ", array("i", $vacina->getCodigo()), true, MYSQLI_ASSOC);
+            $mysql->execute(
+                "
+                SELECT vac_int_codigo as codigo, 
+                       vac_var_nome as nome 
+                FROM vw_vacina 
+                WHERE vac_int_codigo = ? ",
+                ["i", $vacina->getCodigo()],
+                true,
+                MYSQLI_ASSOC
+            );
+            
             if ($mysql->fetch()) {
                 $ret = $mysql->res;
             }
@@ -41,14 +54,14 @@ class Vacina
         return $ret;
     }
 
-    /** 
-     * @param Vacina $vacina 
+    /**
+     * @param Vacina $vacina
      */
-    public function insert(VacinaEntity $vacina) 
+    public function insert(VacinaEntity $vacina)
     {
-        $return = array();
-        $param = array("s",$vacina->getNome());
-        try{
+        $return = [];
+        $param = ["s",$vacina->getNome()];
+        try {
             $mysql = new GDbMysql();
             $mysql->execute("CALL sp_vacina_ins(?, @p_status, @p_msg, @p_insert_id);", $param, false);
             $mysql->execute("SELECT @p_status, @p_msg, @p_insert_id");
@@ -64,14 +77,14 @@ class Vacina
         return $return;
     }
 
-    /** 
-     * @param Vacina $vacina 
+    /**
+     * @param Vacina $vacina
      */
-    public function update(VacinaEntity $vacina) 
+    public function update(VacinaEntity $vacina)
     {
-        $return = array();
-        $param = array("is",$vacina->getCodigo(),$vacina->getNome());
-        try{
+        $return = [];
+        $param = ["is",$vacina->getCodigo(),$vacina->getNome()];
+        try {
             $mysql = new GDbMysql();
             $mysql->execute("CALL sp_vacina_upd(?,?, @p_status, @p_msg);", $param, false);
             $mysql->execute("SELECT @p_status, @p_msg");
@@ -86,13 +99,13 @@ class Vacina
         return $return;
     }
 
-    /** 
-     * @param Vacina $vacina 
+    /**
+     * @param Vacina $vacina
      */
-    public function delete(VacinaEntity $vacina) 
+    public function delete(VacinaEntity $vacina)
     {
-        $return = array();
-        $param = array("i",$vacina->getCodigo());
+        $return = [];
+        $param = ["i",$vacina->getCodigo()];
         try {
             $mysql = new GDbMysql();
             $mysql->execute("CALL sp_vacina_del(?, @p_status, @p_msg);", $param, false);

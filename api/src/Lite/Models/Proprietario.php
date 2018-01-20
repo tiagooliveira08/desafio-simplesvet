@@ -7,14 +7,19 @@ use SimplesVet\Lite\Entities\Proprietario as ProprietarioEntity;
 
 class Proprietario
 {
-    public static function getAll() {
-        $return = array();
+    public static function getAll()
+    {
+        $return = [];
       
         try {
             $mysql = new GDbMysql();
 
-            $return = $mysql->executeAll("SELECT pro_int_codigo as codigo, pro_var_nome as nome, pro_var_email as email, pro_var_telefone as telefone  FROM vw_proprietario");
-      
+            $return = $mysql->executeAll("
+                SELECT pro_int_codigo as codigo, 
+                       pro_var_nome as nome, 
+                       pro_var_email as email, 
+                       pro_var_telefone as telefone 
+                FROM vw_proprietario");
         } catch (GDbException $e) {
             echo $e->getError();
         }
@@ -22,21 +27,31 @@ class Proprietario
         return $return;
     }
 
-    /** 
+    /**
      * @param Proprietario $proprietario
      */
-    public static function selectByIdForm(ProprietarioEntity $proprietario) 
+    public static function selectByIdForm(ProprietarioEntity $proprietario)
     {
-        $return = array();
+        $return = [];
       
         try {
             $mysql = new GDbMysql();
-            $mysql->execute("SELECT pro_int_codigo as codigo, pro_var_nome as nome, pro_var_email as email, pro_var_telefone as telefone FROM vw_proprietario WHERE pro_int_codigo = ? ", array("i", $proprietario->getCodigo()), true, MYSQLI_ASSOC);
+            $mysql->execute(
+                "
+                SELECT pro_int_codigo as codigo, 
+                       pro_var_nome as nome, 
+                       pro_var_email as email, 
+                       pro_var_telefone as telefone 
+                FROM vw_proprietario 
+                WHERE pro_int_codigo = ? ",
+                ["i", $proprietario->getCodigo()],
+                true,
+                MYSQLI_ASSOC
+            );
     
             $return = ($mysql->fetch()) ? $mysql->res : [];
       
             $mysql->close();
-      
         } catch (GDbException $e) {
             echo $e->getError();
         }
@@ -45,19 +60,19 @@ class Proprietario
     }
 
     
-    /** 
-     * @param Proprietario $proprietario 
+    /**
+     * @param Proprietario $proprietario
      */
-    public static function insert(ProprietarioEntity $proprietario) 
+    public static function insert(ProprietarioEntity $proprietario)
     {
-        $return = array();
-        $param = array("sss",
+        $return = [];
+        $param = ["sss",
             $proprietario->getNome(),
             $proprietario->getEmail(),
             $proprietario->getTelefone()
-        );
+        ];
 
-        try{
+        try {
             $mysql = new GDbMysql();
             $mysql->execute("CALL sp_proprietario_ins(?,?,?, @p_status, @p_msg, @p_insert_id);", $param, false);
             $mysql->execute("SELECT @p_status, @p_msg, @p_insert_id");
@@ -74,20 +89,20 @@ class Proprietario
     }
     
 
-    /** 
-     * @param Proprietario $proprietario 
+    /**
+     * @param Proprietario $proprietario
      */
-    public static function update(ProprietarioEntity $proprietario) 
+    public static function update(ProprietarioEntity $proprietario)
     {
-        $return = array();
-        $param = array("isss",
+        $return = [];
+        $param = ["isss",
             $proprietario->getCodigo(),
             $proprietario->getNome(),
             $proprietario->getEmail(),
             $proprietario->getTelefone()
-        );
+        ];
 
-        try{
+        try {
             $mysql = new GDbMysql();
             $mysql->execute("CALL sp_proprietario_upd(?,?,?,?, @p_status, @p_msg);", $param, false);
             $mysql->execute("SELECT @p_status, @p_msg");
@@ -102,15 +117,15 @@ class Proprietario
         return $return;
     }
 
-    /** 
-     * @param Proprietario $proprietario 
+    /**
+     * @param Proprietario $proprietario
      */
-    public function delete(ProprietarioEntity $proprietario) 
+    public function delete(ProprietarioEntity $proprietario)
     {
-        $return = array();
-        $param = array("i",
+        $return = [];
+        $param = ["i",
             $proprietario->getCodigo()
-        );
+        ];
         
         try {
             $mysql = new GDbMysql();
@@ -126,6 +141,4 @@ class Proprietario
         }
         return $return;
     }
-
-   
 }

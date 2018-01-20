@@ -8,7 +8,7 @@ use SimplesVet\Lite\Entities\Raca as RacaEntity;
 use SimplesVet\Lite\Entities\Proprietario as ProprietarioEntity;
 use SimplesVet\Lite\Models\Animal as AnimalModel;
 
-class Animal 
+class Animal
 {
     public function index(Request $request, Response $response, $args)
     {
