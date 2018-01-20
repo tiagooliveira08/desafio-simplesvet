@@ -1,6 +1,8 @@
 <?php
-class AnimalVacina{
-	
+namespace SimplesVet\Lite\Entities;
+
+class AnimalVacina
+{
 	private $anv_int_codigo;
 	/* @var $animal Animal */
 	private $animal;
@@ -11,58 +13,69 @@ class AnimalVacina{
 	/* @var $usuario Usuario */
 	private $usuario;
 
-
-	public function getAnv_int_codigo() {
+	public function getCodigo()
+	{
 		return $this->anv_int_codigo;
 	}
 
-	public function setAnv_int_codigo($anv_int_codigo) {
+	public function setCodigo($anv_int_codigo) 
+	{
 		$this->anv_int_codigo = $anv_int_codigo;
 	}
 
 	/** @return Animal */
-	public function getAnimal() {
+	public function getAnimal() 
+	{
 		return $this->animal;
 	}
 
 	/** @param Animal $animal */
-	public function setAnimal($animal) {
+	public function setAnimal(Animal $animal) 
+	{
 		$this->animal = $animal;
 	}
 
 	/** @return Vacina */
-	public function getVacina() {
+	public function getVacina() 
+	{
 		return $this->vacina;
 	}
 
 	/** @param Vacina $vacina */
-	public function setVacina($vacina) {
+	public function setVacina(Vacina $vacina) 
+	{
 		$this->vacina = $vacina;
 	}
 
-	public function getAnv_dat_programacao() {
+	public function getDataProgramacao() 
+	{
 		return $this->anv_dat_programacao;
 	}
 
-	public function setAnv_dat_programacao($anv_dat_programacao) {
-		$this->anv_dat_programacao = $anv_dat_programacao;
+	public function setDataProgramacao($dataProgramacao) 
+	{
+		$this->anv_dat_programacao = $dataProgramacao;
 	}
 
-	public function getAnv_dti_aplicacao() {
+	public function getDataAplicacao() 
+	{
 		return $this->anv_dti_aplicacao;
 	}
 
-	public function setAnv_dti_aplicacao($anv_dti_aplicacao) {
-		$this->anv_dti_aplicacao = $anv_dti_aplicacao;
+	public function setDataAplicacao($dataAplicacao) 
+	{
+		$this->anv_dti_aplicacao = $dataAplicacao;
 	}
 
 	/** @return Usuario */
-	public function getUsuario() {
+	public function getUsuario() 
+	{
 		return $this->usuario;
 	}
 
 	/** @param Usuario $usuario */
-	public function setUsuario($usuario) {
+	public function setUsuario(Usuario $usuario) 
+	{
 		$this->usuario = $usuario;
 	}
 

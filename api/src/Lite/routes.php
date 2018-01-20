@@ -3,6 +3,7 @@ use SimplesVet\Lite\Controllers\Proprietario;
 use SimplesVet\Lite\Controllers\Usuario;
 use SimplesVet\Lite\Controllers\Animal;
 use SimplesVet\Lite\Controllers\Vacina;
+use SimplesVet\Lite\Controllers\AnimalVacina;
 
 $app->group('/proprietarios', function(){
     $this->get('', Proprietario::class . ':index');
@@ -29,4 +30,8 @@ $app->group('/animais', function(){
 
 $app->group('/vacinas', function(){
     $this->get('', Vacina::class . ':index');
+    $this->get('/animal/{codigo_animal}', AnimalVacina::class . ':showByAnimal');
+    $this->post('/aplicacao', AnimalVacina::class . ':store');
+    $this->get('/aplicacao/{codigo}', AnimalVacina::class . ':show');
+    $this->delete('/aplicacao/{codigo}', AnimalVacina::class . ':destroy');
 });
