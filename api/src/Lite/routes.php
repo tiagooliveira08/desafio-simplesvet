@@ -1,10 +1,13 @@
 <?php
+use Psr\Http\Message\ServerRequestInterface as Request;
+use Psr\Http\Message\ResponseInterface as Response;
 use SimplesVet\Lite\Controllers\Proprietario;
 use SimplesVet\Lite\Controllers\Usuario;
 use SimplesVet\Lite\Controllers\Animal;
 use SimplesVet\Lite\Controllers\Vacina;
 use SimplesVet\Lite\Controllers\AnimalVacina;
 use SimplesVet\Lite\Controllers\Raca;
+use SimplesVet\Lite\Helpers\FileUpload;
 
 $app->group('/proprietarios', function () {
     $this->get('', Proprietario::class . ':index');
@@ -42,4 +45,13 @@ $app->group('/racas', function () {
     $this->get('', Raca::class . ':index');
     $this->post('', Raca::class . ':store');
     $this->get('/{codigo}', Raca::class . ':show');
+});
+
+$app->post('/upload', function (Request $request, Response $response, $args) {
+    $upload = $request->getUploadedFiles();
+    $foto = $upload['foto'];
+
+    $fileUpload = FileUpload::imageUpload($foto);
+
+    return $response->withJson($fileUpload, 200);
 });
