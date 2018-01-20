@@ -15,7 +15,7 @@ class Animal
         $ret = array();
         try {
             $mysql = new GDbMysql();
-            $mysql->execute("SELECT ani_int_codigo,ani_var_nome,ani_cha_vivo,ani_dec_peso,ani_var_raca FROM vw_animal WHERE ani_int_codigo = ? ", array("i", $animal->getCodigo()), true, MYSQL_ASSOC);
+            $mysql->execute("SELECT ani_int_codigo,ani_var_nome,ani_cha_vivo,ani_dec_peso,ani_var_raca FROM vw_animal WHERE ani_int_codigo = ? ", array("i", $animal->getCodigo()), true, MYSQLI_ASSOC);
             if ($mysql->fetch()) {
                 $ret = $mysql->res;
             }

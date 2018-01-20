@@ -15,7 +15,7 @@ class Usuario
         $ret = array();
         try {
             $mysql = new GDbMysql();
-            $mysql->execute("SELECT usu_int_codigo,usu_var_nome,usu_var_email,usu_cha_status,usu_dti_inclusao FROM vw_usuario WHERE usu_int_codigo = ? ", array("i", $usuario->getCodigo()), true, MYSQL_ASSOC);
+            $mysql->execute("SELECT usu_int_codigo,usu_var_nome,usu_var_email,usu_cha_status,usu_dti_inclusao FROM vw_usuario WHERE usu_int_codigo = ? ", array("i", $usuario->getCodigo()), true, MYSQLI_ASSOC);
             if ($mysql->fetch()) {
                 $ret = $mysql->res;
             }
@@ -89,7 +89,7 @@ class Usuario
     {
         $return = array();
         $param = array("i",$usuario->getCodigo());
-        
+
         try {
             $mysql = new GDbMysql();
             $mysql->execute("CALL sp_usuario_del(?, @p_status, @p_msg);", $param, false);
