@@ -33,8 +33,6 @@ $settings['determineRouteBeforeAppMiddleware'] = true;
 
 $app = new \Slim\App(["settings" => $settings]);
 
-require '_genesis/genesis.php';
-require 'endpoints/usuarios.php';
-require 'endpoints/animais.php';
+require_once 'src/Lite/routes.php';
 
 $app->run();
