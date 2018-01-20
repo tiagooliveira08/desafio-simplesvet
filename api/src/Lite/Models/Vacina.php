@@ -13,11 +13,7 @@ class Vacina
         try {
             $mysql = new GDbMysql();
 
-            $mysql->execute("SELECT vac_int_codigo as codigo, vac_var_nome as nome FROM vw_vacina", null, true, MYSQLI_ASSOC);
-
-            while($mysql->fetch()) {
-                $return[] = $mysql->res;
-            }
+            $return = $mysql->executeAll("SELECT vac_int_codigo as codigo, vac_var_nome as nome FROM vw_vacina");
       
         } catch (GDbException $e) {
             echo $e->getError();

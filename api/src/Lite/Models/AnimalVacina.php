@@ -17,11 +17,7 @@ class AnimalVacina
         try {
             $mysql = new GDbMysql();
 
-            $mysql->execute("SELECT anv_int_codigo as codigo, ani_int_codigo as codigo_animal, vac_int_codigo as codigo_vacina, anv_dat_programacao as data_programacao, anv_dti_aplicacao as data_aplicacao, usu_int_codigo as codigo_usuario FROM vw_animal_vacina WHERE ani_int_codigo = ?", array("i", $animalVacina->getAnimal()->getCodigo()), true, MYSQLI_ASSOC);
-
-            while($mysql->fetch()) {
-                $return[] = $mysql->res;
-            }
+            $return = $mysql->executeAll("SELECT anv_int_codigo as codigo, ani_int_codigo as codigo_animal, vac_int_codigo as codigo_vacina, anv_dat_programacao as data_programacao, anv_dti_aplicacao as data_aplicacao, usu_int_codigo as codigo_usuario FROM vw_animal_vacina WHERE ani_int_codigo = ?", array("i", $animalVacina->getAnimal()->getCodigo()));
       
         } catch (GDbException $e) {
             echo $e->getError();

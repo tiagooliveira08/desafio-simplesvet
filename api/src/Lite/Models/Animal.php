@@ -13,12 +13,8 @@ class Animal
         try {
             $mysql = new GDbMysql();
 
-            $mysql->execute("SELECT ani_int_codigo as codigo, ani_var_nome as nome, ani_cha_vivo as vivo, ani_dec_peso as peso, ani_var_raca as raca FROM vw_animal", null, true, MYSQLI_ASSOC);
-
-            while($mysql->fetch()) {
-                $return[] = $mysql->res;
-            }
-      
+            $return = $mysql->executeAll("SELECT ani_int_codigo as codigo, ani_var_nome as nome, ani_cha_vivo as vivo, ani_dec_peso as peso, ani_var_raca as raca FROM vw_animal");
+        
         } catch (GDbException $e) {
             echo $e->getError();
         }

@@ -13,11 +13,7 @@ class Proprietario
         try {
             $mysql = new GDbMysql();
 
-            $mysql->execute("SELECT pro_int_codigo as codigo, pro_var_nome as nome, pro_var_email as email, pro_var_telefone as telefone  FROM vw_proprietario", null, true, MYSQLI_ASSOC);
-
-            while($mysql->fetch()) {
-                $return[] = $mysql->res;
-            }
+            $return = $mysql->executeAll("SELECT pro_int_codigo as codigo, pro_var_nome as nome, pro_var_email as email, pro_var_telefone as telefone  FROM vw_proprietario");
       
         } catch (GDbException $e) {
             echo $e->getError();
