@@ -12,7 +12,7 @@
         }
     },
     "scripts": {
-        "phpcs": "vendor\\bin\\phpcs",
-        "phpcbf": "vendor\\bin\\phpcbf"
+        "phpcs": "vendor/bin/phpcs",
+        "phpcbf": "vendor/bin/phpcbf"
     }
 }
