@@ -78,4 +78,26 @@ class AnimalVacina
 
         return $response->withJson($data, $code);
     }
+
+    public function aplicar(Request $request, Response $response, $args) 
+    {
+        $body = $request->getParsedBody();
+        $codigo = $request->getAttribute('codigo');
+
+        $usuario = new UsuarioEntity;
+        $usuario->setCodigo($body['codigo_usuario']);
+
+        $animal = new AnimalEntity;
+        $animal->setCodigo($body['codigo_animal']);
+    
+        $animalVacina = new AnimalVacinaEntity();
+        $animalVacina->setCodigo($codigo); 
+        $animalVacina->setUsuario($usuario);
+        $animalVacina->setAnimal($animal);
+
+        $data = AnimalVacinaModel::aplicar($animalVacina);
+        $code = ($data['status']) ? 200 : 500;
+
+        return $response->withJson($data, $code);
+    }
 }

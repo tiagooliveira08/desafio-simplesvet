@@ -82,7 +82,8 @@ class AnimalVacina
     /** 
      * @param AnimalVacina $animalVacina 
     */
-    public function delete(AnimalVacinaEntity $animalVacina) {
+    public function delete(AnimalVacinaEntity $animalVacina) 
+    {
 
         $return = array();
         $param = array("i",$animalVacina->getCodigo());
@@ -100,4 +101,33 @@ class AnimalVacina
         }
         return $return;
     }
+
+    /** 
+     * @param AnimalVacina $animalVacina 
+    */
+    public function aplicar(AnimalVacinaEntity $animalVacina) 
+    {
+        $return = array();
+        $param = array("iiis",
+            $animalVacina->getCodigo(),
+            $animalVacina->getAnimal()->getCodigo(),
+            $animalVacina->getUsuario()->getCodigo(),
+            'S'
+        );
+        try {
+            $mysql = new GDbMysql();
+            $mysql->execute("CALL sp_animalvacina_aplica(?,?,?,?, @p_status, @p_msg);", $param, false);
+            $mysql->execute("SELECT @p_status, @p_msg");
+            $mysql->fetch();
+            $return["status"] = ($mysql->res[0]) ? true : false;
+            $return["msg"] = $mysql->res[1];
+            $mysql->close();
+        } catch (GDbException $e) {
+            $return["status"] = false;
+            $return["msg"] = $e->getError();
+        }
+        return $return;
+    }
+
+
 }

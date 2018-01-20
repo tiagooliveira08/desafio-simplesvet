@@ -34,4 +34,5 @@ $app->group('/vacinas', function(){
     $this->post('/aplicacao', AnimalVacina::class . ':store');
     $this->get('/aplicacao/{codigo}', AnimalVacina::class . ':show');
     $this->delete('/aplicacao/{codigo}', AnimalVacina::class . ':destroy');
+    $this->post('/aplicacao/{codigo}/aplicar', AnimalVacina::class . ':aplicar');
 });
