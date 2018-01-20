@@ -1,4 +1,5 @@
 <?php
+namespace SimplesVet\Genesis;
 
 class GDbMysql {
 

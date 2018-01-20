@@ -1,4 +1,5 @@
 <?php
+namespace SimplesVet\Genesis;
 
 /**
  * Classe com as funções comuns do Genesis

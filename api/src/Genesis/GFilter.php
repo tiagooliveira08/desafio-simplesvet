@@ -1,4 +1,5 @@
 <?php
+namespace SimplesVet\Genesis;
 
 /**
  * Classe para os filtros de uma consulta

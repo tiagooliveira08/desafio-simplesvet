@@ -1,5 +1,5 @@
 <?php
-
+namespace SimplesVet\Genesis;
 /**
  * Classe de Exceção do Bando de Dados
  */
