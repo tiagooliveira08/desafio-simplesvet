@@ -117,6 +117,28 @@ class GDbMysql {
         return $array;
     }
 
+    public function executeAll($query, $param = false) {
+        $array = array();
+        try {
+            if ($param)
+                $this->execute($query, $param, true, MYSQLI_ASSOC);
+            else
+                $this->execute($query, null, true, MYSQLI_ASSOC);
+            while ($this->fetch()) {
+                $entry = [];
+                foreach($this->res as $key => $value) {
+                    $entry[$key] = $value;
+                }
+                array_push($array, $entry);
+            }
+            $this->freeResult();
+            $this->close();
+        } catch (GDbException $e) {
+            echo $e->getError();
+        }
+        return $array;
+    }
+
     public function fetch() {
         return mysqli_stmt_fetch($this->stmt);
     }
