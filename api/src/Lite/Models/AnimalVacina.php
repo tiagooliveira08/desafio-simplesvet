@@ -10,21 +10,6 @@ class AnimalVacina
     /** 
      * @param AnimalVacina $animalVacina 
      */
-    public static function getAll() {
-        $return = array();
-      
-        try {
-            $mysql = new GDbMysql();
-
-            $return = $mysql->executeCombo("SELECT * FROM vw_proprietario", null, true, MYSQLI_ASSOC);
-      
-        } catch (GDbException $e) {
-            echo $e->getError();
-        }
-      
-        return $return;
-    }
-
     public function selectByAnimalIdForm(AnimalVacinaEntity $animalVacina) 
     {
         $return = array();
