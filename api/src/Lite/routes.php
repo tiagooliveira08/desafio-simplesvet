@@ -1,13 +1,17 @@
 <?php
-use Psr\Http\Message\ServerRequestInterface as Request;
-use Psr\Http\Message\ResponseInterface as Response;
-use SimplesVet\Lite\Controllers\Proprietario;
-use SimplesVet\Lite\Controllers\Usuario;
-use SimplesVet\Lite\Controllers\Animal;
-use SimplesVet\Lite\Controllers\Vacina;
-use SimplesVet\Lite\Controllers\AnimalVacina;
-use SimplesVet\Lite\Controllers\Raca;
+use Psr\Http\Message\{
+    ServerRequestInterface as Request,
+    ResponseInterface as Response
+};
 use SimplesVet\Lite\Helpers\FileUpload;
+use SimplesVet\Lite\Controllers\{
+    Proprietario,
+    Usuario,
+    Animal,
+    Vacina,
+    AnimalVacina,
+    Raca
+};
 
 $app->group('/proprietarios', function () {
     $this->get('', Proprietario::class . ':index');

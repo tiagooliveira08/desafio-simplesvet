@@ -1,8 +1,7 @@
 <?php
 namespace SimplesVet\Lite\Models;
 
-use SimplesVet\Genesis\GDbMysql;
-use SimplesVet\Genesis\GDbException;
+use SimplesVet\Genesis\{GDbMysql, GDbException};
 use SimplesVet\Lite\Entities\Vacina as VacinaEntity;
 
 class Vacina

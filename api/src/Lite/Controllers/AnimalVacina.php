@@ -1,12 +1,16 @@
 <?php
 namespace SimplesVet\Lite\Controllers;
 
-use Psr\Http\Message\ServerRequestInterface as Request;
-use Psr\Http\Message\ResponseInterface as Response;
-use SimplesVet\Lite\Entities\Usuario as UsuarioEntity;
-use SimplesVet\Lite\Entities\Vacina as VacinaEntity;
-use SimplesVet\Lite\Entities\Animal as AnimalEntity;
-use SimplesVet\Lite\Entities\AnimalVacina as AnimalVacinaEntity;
+use Psr\Http\Message\{
+    ServerRequestInterface as Request,
+    ResponseInterface as Response
+};
+use SimplesVet\Lite\Entities\{
+    Usuario as UsuarioEntity,
+    Vacina as VacinaEntity,
+    Animal as AnimalEntity,
+    AnimalVacina as AnimalVacinaEntity
+};
 use SimplesVet\Lite\Models\AnimalVacina as AnimalVacinaModel;
 
 class AnimalVacina

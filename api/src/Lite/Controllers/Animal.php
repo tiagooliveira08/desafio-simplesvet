@@ -1,11 +1,15 @@
 <?php
 namespace SimplesVet\Lite\Controllers;
 
-use Psr\Http\Message\ServerRequestInterface as Request;
-use Psr\Http\Message\ResponseInterface as Response;
-use SimplesVet\Lite\Entities\Animal as AnimalEntity;
-use SimplesVet\Lite\Entities\Raca as RacaEntity;
-use SimplesVet\Lite\Entities\Proprietario as ProprietarioEntity;
+use Psr\Http\Message\{
+    ServerRequestInterface as Request,
+    ResponseInterface as Response
+};
+use SimplesVet\Lite\Entities\{
+    Animal as AnimalEntity,
+    Raca as RacaEntity,
+    Proprietario as ProprietarioEntity
+};
 use SimplesVet\Lite\Models\Animal as AnimalModel;
 
 class Animal

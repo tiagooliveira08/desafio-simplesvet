@@ -1,8 +1,10 @@
 <?php
 namespace SimplesVet\Lite\Controllers;
 
-use Psr\Http\Message\ServerRequestInterface as Request;
-use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\{
+    ServerRequestInterface as Request,
+    ResponseInterface as Response
+};
 use SimplesVet\Lite\Entities\Vacina as VacinaEntity;
 use SimplesVet\Lite\Models\Vacina as VacinaModel;
 
