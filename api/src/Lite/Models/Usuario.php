@@ -1,13 +1,21 @@
 <?php
-require_once("usuario.php");
+namespace SimplesVet\Lite\Models;
 
-class UsuarioDao {
-    /** @param Usuario $usuario */
-    public static function selectByIdForm($usuario) {
+use SimplesVet\Genesis\GDbMysql;
+use SimplesVet\Genesis\GDbException;
+use SimplesVet\Lite\Entities\Usuario as UsuarioEntity;
+
+class Usuario 
+{
+    /** 
+     * @param Usuario $usuario 
+     */
+    public static function selectByIdForm(UsuarioEntity $usuario) 
+    {
         $ret = array();
         try {
             $mysql = new GDbMysql();
-            $mysql->execute("SELECT usu_int_codigo,usu_var_nome,usu_var_email,usu_cha_status,usu_dti_inclusao FROM vw_usuario WHERE usu_int_codigo = ? ", array("i", $usuario->getUsu_int_codigo()), true, MYSQL_ASSOC);
+            $mysql->execute("SELECT usu_int_codigo,usu_var_nome,usu_var_email,usu_cha_status,usu_dti_inclusao FROM vw_usuario WHERE usu_int_codigo = ? ", array("i", $usuario->getCodigo()), true, MYSQL_ASSOC);
             if ($mysql->fetch()) {
                 $ret = $mysql->res;
             }
@@ -18,14 +26,18 @@ class UsuarioDao {
         return $ret;
     }
 
-    /** @param Usuario $usuario */
-    public static function insert($usuario) {
-
+    /** 
+     * @param Usuario $usuario 
+     */
+    public static function insert(UsuarioEntity $usuario) 
+    {
         $return = array();
         $param = array("sss",
-            $usuario->getUsu_var_nome(),
-            $usuario->getUsu_var_email(),
-            $usuario->getUsu_cha_status());
+            $usuario->getNome(),
+            $usuario->getEmail(),
+            $usuario->getStatus()
+        );
+
         try{
             $mysql = new GDbMysql();
             $mysql->execute("CALL sp_usuario_ins(?,?,?, @p_status, @p_msg, @p_insert_id);", $param, false);
@@ -42,11 +54,19 @@ class UsuarioDao {
         return $return;
     }
 
-    /** @param Usuario $usuario */
-    public static function update($usuario) {
-
+    /** 
+     * @param Usuario $usuario 
+     */
+    public static function update(UsuarioEntity $usuario) 
+    {
         $return = array();
-        $param = array("isss",$usuario->getUsu_int_codigo(),$usuario->getUsu_var_nome(),$usuario->getUsu_var_email(),$usuario->getUsu_cha_status());
+        $param = array("isss",
+            $usuario->getCodigo(),
+            $usuario->getNome(),
+            $usuario->getEmail(),
+            $usuario->getStatus()
+        );
+
         try{
             $mysql = new GDbMysql();
             $mysql->execute("CALL sp_usuario_upd(?,?,?,?, @p_status, @p_msg);", $param, false);
@@ -62,11 +82,14 @@ class UsuarioDao {
         return $return;
     }
 
-    /** @param Usuario $usuario */
-    public static function delete($usuario) {
-
+    /** 
+     * @param Usuario $usuario 
+     */
+    public static function delete(UsuarioEntity $usuario) 
+    {
         $return = array();
-        $param = array("i",$usuario->getUsu_int_codigo());
+        $param = array("i",$usuario->getCodigo());
+        
         try {
             $mysql = new GDbMysql();
             $mysql->execute("CALL sp_usuario_del(?, @p_status, @p_msg);", $param, false);
