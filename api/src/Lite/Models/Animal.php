@@ -20,7 +20,8 @@ class Animal
                     ani_cha_vivo as vivo, 
                     ani_dec_peso as peso, 
                     rac_int_codigo as raca, 
-                    pro_int_codigo as proprietario 
+                    pro_int_codigo as proprietario,
+                    ani_var_foto as foto 
                 FROM vw_animal");
         } catch (GDbException $e) {
             echo $e->getError();
@@ -44,7 +45,8 @@ class Animal
                        ani_cha_vivo as vivo, 
                        ani_dec_peso as peso, 
                        rac_int_codigo as raca, 
-                       pro_int_codigo as proprietario 
+                       pro_int_codigo as proprietario,
+                       ani_var_foto as foto 
                 FROM vw_animal 
                 WHERE ani_int_codigo = ? ",
                 ["i", $animal->getCodigo()],
@@ -68,17 +70,18 @@ class Animal
     public function insert(AnimalEntity $animal)
     {
         $return = [];
-        $param = ["sdisi",
+        $param = ["sdisis",
             $animal->getNome(),
             $animal->getPeso(),
             $animal->getRaca()->getCodigo(),
             $animal->getVivo(),
-            $animal->getProprietario()->getCodigo()
+            $animal->getProprietario()->getCodigo(),
+            $animal->getFoto()
         ];
 
         try {
             $mysql = new GDbMysql();
-            $mysql->execute("CALL sp_animal_ins(?,?,?,?,?, @p_status, @p_msg, @p_insert_id);", $param, false);
+            $mysql->execute("CALL sp_animal_ins(?,?,?,?,?,?, @p_status, @p_msg, @p_insert_id);", $param, false);
             $mysql->execute("SELECT @p_status, @p_msg, @p_insert_id");
             $mysql->fetch();
             $return["status"] = ($mysql->res[0]) ? true : false;
@@ -98,18 +101,19 @@ class Animal
     public function update(AnimalEntity $animal)
     {
         $return = [];
-        $param = ["isdisi",
+        $param = ["isdisis",
             $animal->getCodigo(),
             $animal->getNome(),
             $animal->getPeso(),
             $animal->getRaca()->getCodigo(),
             $animal->getVivo(),
-            $animal->getProprietario()->getCodigo()
+            $animal->getProprietario()->getCodigo(),
+            $animal->getFoto()
         ];
 
         try {
             $mysql = new GDbMysql();
-            $mysql->execute("CALL sp_animal_upd(?,?,?,?,?,?, @p_status, @p_msg);", $param, false);
+            $mysql->execute("CALL sp_animal_upd(?,?,?,?,?,?,?, @p_status, @p_msg);", $param, false);
             $mysql->execute("SELECT @p_status, @p_msg");
             $mysql->fetch();
             $return["status"] = ($mysql->res[0]) ? true : false;

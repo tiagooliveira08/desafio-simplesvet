@@ -45,6 +45,7 @@ class Animal
         $animal->setNome($body['nome']);
         $animal->setVivo($body['vivo']);
         $animal->setPeso($body['peso']);
+        $animal->setFoto($body['foto']);
         $animal->setRaca($raca);
         $animal->setProprietario($proprietario);
 
@@ -70,6 +71,7 @@ class Animal
         $animal->setNome($body['nome']);
         $animal->setVivo($body['vivo']);
         $animal->setPeso($body['peso']);
+        $animal->setFoto($body['foto']);
         $animal->setRaca($raca);
         $animal->setProprietario($proprietario);
 

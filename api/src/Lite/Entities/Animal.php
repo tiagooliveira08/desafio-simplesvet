@@ -11,6 +11,7 @@ class Animal
     private $raca;
     /* @var $proprietario Proprietario */
     private $proprietario;
+    private $ani_var_foto;
 
     public function getCodigo()
     {
@@ -70,5 +71,15 @@ class Animal
     public function setProprietario(Proprietario $proprietario)
     {
         $this->proprietario = $proprietario;
+    }
+    
+    public function getFoto()
+    {
+        return $this->ani_var_foto;
+    }
+    
+    public function setFoto($foto)
+    {
+        $this->ani_var_foto = $foto;
     }
 }
