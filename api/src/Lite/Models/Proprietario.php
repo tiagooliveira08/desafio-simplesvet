@@ -13,7 +13,11 @@ class Proprietario
         try {
             $mysql = new GDbMysql();
 
-            $return = $mysql->executeCombo("SELECT * FROM vw_proprietario", null, true, MYSQLI_ASSOC);
+            $mysql->execute("SELECT pro_int_codigo as codigo, pro_var_nome as nome, pro_var_email as email, pro_var_telefone as telefone  FROM vw_proprietario", null, true, MYSQLI_ASSOC);
+
+            while($mysql->fetch()) {
+                $return[] = $mysql->res;
+            }
       
         } catch (GDbException $e) {
             echo $e->getError();
@@ -31,7 +35,7 @@ class Proprietario
       
         try {
             $mysql = new GDbMysql();
-            $mysql->execute("SELECT pro_int_codigo,pro_var_nome,pro_var_email,pro_var_telefone FROM vw_proprietario WHERE pro_int_codigo = ? ", array("i", $proprietario->getCodigo()), true, MYSQLI_ASSOC);
+            $mysql->execute("SELECT pro_int_codigo as codigo, pro_var_nome as nome, pro_var_email as email, pro_var_telefone as telefone FROM vw_proprietario WHERE pro_int_codigo = ? ", array("i", $proprietario->getCodigo()), true, MYSQLI_ASSOC);
     
             $return = ($mysql->fetch()) ? $mysql->res : [];
       

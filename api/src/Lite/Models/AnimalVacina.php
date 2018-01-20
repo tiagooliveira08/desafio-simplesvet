@@ -17,7 +17,11 @@ class AnimalVacina
         try {
             $mysql = new GDbMysql();
 
-            $return = $mysql->executeCombo("SELECT * FROM vw_animal_vacina WHERE ani_int_codigo = ?", array("i", $animalVacina->getAnimal()->getCodigo()), true, MYSQLI_ASSOC);
+            $mysql->execute("SELECT anv_int_codigo as codigo, ani_int_codigo as codigo_animal, vac_int_codigo as codigo_vacina, anv_dat_programacao as data_programacao, anv_dti_aplicacao as data_aplicacao, usu_int_codigo as codigo_usuario FROM vw_animal_vacina WHERE ani_int_codigo = ?", array("i", $animalVacina->getAnimal()->getCodigo()), true, MYSQLI_ASSOC);
+
+            while($mysql->fetch()) {
+                $return[] = $mysql->res;
+            }
       
         } catch (GDbException $e) {
             echo $e->getError();
@@ -34,7 +38,7 @@ class AnimalVacina
         $ret = array();
         try {
             $mysql = new GDbMysql();
-            $mysql->execute("SELECT anv_int_codigo,ani_int_codigo,vac_int_codigo,anv_dat_programacao,anv_dti_aplicacao,usu_int_codigo FROM vw_animal_vacina WHERE anv_int_codigo = ? ", array("i", $animalVacina->getCodigo()), true, MYSQLI_ASSOC);
+            $mysql->execute("SELECT anv_int_codigo as codigo, ani_int_codigo as codigo_animal, vac_int_codigo as codigo_vacina, anv_dat_programacao as data_programacao, anv_dti_aplicacao as data_aplicacao, usu_int_codigo as codigo_usuario FROM vw_animal_vacina WHERE anv_int_codigo = ? ", array("i", $animalVacina->getCodigo()), true, MYSQLI_ASSOC);
             if ($mysql->fetch()) {
                 $ret = $mysql->res;
             }

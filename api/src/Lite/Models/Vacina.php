@@ -13,7 +13,11 @@ class Vacina
         try {
             $mysql = new GDbMysql();
 
-            $return = $mysql->executeCombo("SELECT * FROM vw_vacina", null, true, MYSQLI_ASSOC);
+            $mysql->execute("SELECT vac_int_codigo as codigo, vac_var_nome as nome FROM vw_vacina", null, true, MYSQLI_ASSOC);
+
+            while($mysql->fetch()) {
+                $return[] = $mysql->res;
+            }
       
         } catch (GDbException $e) {
             echo $e->getError();
@@ -30,7 +34,7 @@ class Vacina
         $ret = array();
         try {
             $mysql = new GDbMysql();
-            $mysql->execute("SELECT vac_int_codigo,vac_var_nome FROM vw_vacina WHERE vac_int_codigo = ? ", array("i", $vacina->getCodigo()), true, MYSQLI_ASSOC);
+            $mysql->execute("SELECT vac_int_codigo as codigo, vac_var_nome as nome FROM vw_vacina WHERE vac_int_codigo = ? ", array("i", $vacina->getCodigo()), true, MYSQLI_ASSOC);
             if ($mysql->fetch()) {
                 $ret = $mysql->res;
             }

@@ -7,6 +7,25 @@ use SimplesVet\Lite\Entities\Animal as AnimalEntity;
 
 class Animal 
 {
+    public static function getAll() {
+        $return = array();
+      
+        try {
+            $mysql = new GDbMysql();
+
+            $mysql->execute("SELECT ani_int_codigo as codigo, ani_var_nome as nome, ani_cha_vivo as vivo, ani_dec_peso as peso, ani_var_raca as raca FROM vw_animal", null, true, MYSQLI_ASSOC);
+
+            while($mysql->fetch()) {
+                $return[] = $mysql->res;
+            }
+      
+        } catch (GDbException $e) {
+            echo $e->getError();
+        }
+      
+        return $return;
+    }
+
     /** 
      * @param Animal $animal 
      */
@@ -15,7 +34,7 @@ class Animal
         $ret = array();
         try {
             $mysql = new GDbMysql();
-            $mysql->execute("SELECT ani_int_codigo,ani_var_nome,ani_cha_vivo,ani_dec_peso,ani_var_raca FROM vw_animal WHERE ani_int_codigo = ? ", array("i", $animal->getCodigo()), true, MYSQLI_ASSOC);
+            $mysql->execute("SELECT ani_int_codigo as codigo, ani_var_nome as nome, ani_cha_vivo as vivo, ani_dec_peso as peso, ani_var_raca as raca FROM vw_animal WHERE ani_int_codigo = ? ", array("i", $animal->getCodigo()), true, MYSQLI_ASSOC);
             if ($mysql->fetch()) {
                 $ret = $mysql->res;
             }
