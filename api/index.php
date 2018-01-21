@@ -34,6 +34,7 @@ $settings['determineRouteBeforeAppMiddleware'] = true;
 
 $app = new \Slim\App(["settings" => $settings]);
 
+require_once 'src/Lite/middlewares.php';
 require_once 'src/Lite/routes.php';
 
 $app->run();

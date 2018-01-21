@@ -10,7 +10,8 @@ use SimplesVet\Lite\Controllers\{
     Animal,
     Vacina,
     AnimalVacina,
-    Raca
+    Raca,
+    Autenticacao
 };
 
 $app->group('/proprietarios', function () {
@@ -49,6 +50,11 @@ $app->group('/racas', function () {
     $this->get('', Raca::class . ':index');
     $this->post('', Raca::class . ':store');
     $this->get('/{codigo}', Raca::class . ':show');
+});
+
+$app->group('/auth', function () {
+    $this->post('/login', Autenticacao::class . ':login');
+    $this->post('/validate', Autenticacao::class . ':validateToken');
 });
 
 $app->post('/upload', function (Request $request, Response $response, $args) {

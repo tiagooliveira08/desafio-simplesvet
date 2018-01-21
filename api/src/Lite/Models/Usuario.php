@@ -26,13 +26,12 @@ class Usuario
                 MYSQLI_ASSOC
             );
 
-            if($mysql->fetch()) {
+            if ($mysql->fetch()) {
                 $result = $mysql->res;
             }
             
             $mysql->close();
-
-        } catch(GDbException $e) {
+        } catch (GDbException $e) {
             echo $e->getError();
         }
 

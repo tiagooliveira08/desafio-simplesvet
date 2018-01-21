@@ -1,7 +1,9 @@
 {
     "require": {
         "slim/slim": "^3.0",
-        "vlucas/phpdotenv": "^2.4"
+        "vlucas/phpdotenv": "^2.4",
+        "lcobucci/jwt": "^3.2",
+        "tuupola/slim-jwt-auth": "^2.3"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.0"
