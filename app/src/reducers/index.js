@@ -6,6 +6,7 @@ import animaisReducer from './animais';
 import authReducer from './auth';
 import racasReducer from './racas';
 import proprietariosReducer from './proprietarios';
+import usuariosReducer from './usuarios';
 
 export default combineReducers({
     form: FormReducer,
@@ -14,4 +15,5 @@ export default combineReducers({
     animais: animaisReducer,
     racas: racasReducer,
     proprietarios: proprietariosReducer,
+    usuarios: usuariosReducer,
 });

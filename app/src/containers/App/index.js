@@ -7,7 +7,12 @@ import Axios from 'axios';
 import { AuthAction } from '../../actions';
 import { Header, Footer, Navigation } from '../../components';
 
-import { Home, Login, AnimaisList } from '../index';
+import { 
+    Home, 
+    Login, 
+    AnimaisList, 
+    UsuariosList, 
+} from '../index';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
@@ -39,6 +44,7 @@ class SimplesVet extends Component
                             <div>
                                 <Route path="/" component={ Home } exact/>
                                 <Route path="/animais" component={ AnimaisList } exact />
+                                <Route path="/usuarios" component={ UsuariosList } exact />
                             </div>
                         </Router>
                     </div>
