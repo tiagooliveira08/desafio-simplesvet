@@ -6,6 +6,26 @@ use SimplesVet\Lite\Entities\Usuario as UsuarioEntity;
 
 class Usuario
 {
+    public static function getAll()
+    {
+        $return = [];
+      
+        try {
+            $mysql = new GDbMysql();
+
+            $return = $mysql->executeAll("
+                SELECT usu_int_codigo as codigo, 
+                       usu_var_nome as nome, 
+                       usu_var_email as email, 
+                       usu_cha_status as user_status 
+                FROM vw_usuario");
+        } catch (GDbException $e) {
+            echo $e->getError();
+        }
+      
+        return $return;
+    }
+
     public static function findByEmail(UsuarioEntity $usuario)
     {
         $result = null;

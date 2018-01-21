@@ -10,6 +10,14 @@ use SimplesVet\Lite\Models\Usuario as UsuarioModel;
 
 class Usuario
 {
+    public function index(Request $request, Response $response, $args)
+    {
+        $data = UsuarioModel::getAll();
+        $code = count($data) > 0 ? 200 : 404;
+
+        return $response->withJson($data, $code);
+    }
+
     public function show(Request $request, Response $response, $args)
     {
         $codigo = $request->getAttribute('codigo');

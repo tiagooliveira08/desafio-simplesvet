@@ -23,6 +23,7 @@ $app->group('/proprietarios', function () {
 });
 
 $app->group('/usuarios', function () {
+    $this->get('', Usuario::class . ':index');
     $this->post('', Usuario::class . ':store');
     $this->get('/{codigo}', Usuario::class . ':show');
     $this->put('/{codigo}', Usuario::class . ':update');
