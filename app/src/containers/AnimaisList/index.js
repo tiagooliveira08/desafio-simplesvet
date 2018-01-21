@@ -5,24 +5,38 @@ import { bindActionCreators } from 'redux';
 import { AnimaisAction } from '../../actions';
 import { Page, PageHeader, Icon } from '../../components';
 
-class List extends Component 
+class AnimaisList extends Component 
 {
     componentWillMount()
     {
-        this.props.fetchList();
+        this.props.fetchAnimaisData();
+    }
+
+    findRaca(codigo_raca)
+    {
+        const raca = this.props.racas.find(item => item.codigo === codigo_raca);
+
+        return (raca) ? raca.nome : false;
+    }
+
+    findProprietario(codigo_proprietario)
+    {
+        const proprietario = this.props.proprietarios.find(item => item.codigo === codigo_proprietario);
+
+        return (proprietario) ? proprietario.nome : false;
     }
 
     renderRows()
     {
-        const list = this.props.list || [];
+        const list = this.props.animais || [];
 
         return list.map(item => (
             <tr key={ item.codigo }>
                 <td>{ item.nome }</td>
                 <td>{ item.vivo }</td>
                 <td>{ item.peso }</td>
-                <td>{ item.raca }</td>
-                <td>{ item.proprietario }</td>
+                <td>{ this.findRaca(item.raca) }</td>
+                <td>{ this.findProprietario(item.proprietario) }</td>
                 <td>
                     <Icon color="warning" onClick={() => false } icon="faPencilAlt" />
                     <Icon color="danger" onClick={() => false } icon="faTrashAlt" />
@@ -57,9 +71,14 @@ class List extends Component
     }
 }
 
-const mapStateToProps = state => ({ ...state.animais })
+const mapStateToProps = state => ({
+    animais: state.animais.list,
+    racas: state.racas.list,
+    proprietarios: state.proprietarios.list,
+});
+
 const mapDispatchToProps = dispatch => bindActionCreators({ 
     ...AnimaisAction
-}, dispatch)
+}, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(List)
+export default connect(mapStateToProps, mapDispatchToProps)(AnimaisList);
