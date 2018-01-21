@@ -8,6 +8,7 @@ class Usuario
     private $usu_var_email;
     private $usu_cha_status;
     private $usu_dti_inclusao;
+    private $usu_var_senha;
 
     public function getCodigo()
     {
@@ -57,5 +58,15 @@ class Usuario
     public function setDataInclusao($dataInclusao)
     {
         $this->usu_dti_inclusao = $dataInclusao;
+    }
+
+    public function getSenha()
+    {
+        return $this->usu_var_senha;
+    }
+
+    public function setSenha($senha)
+    {
+        $this->usu_var_senha = password_hash($senha, PASSWORD_DEFAULT);
     }
 }

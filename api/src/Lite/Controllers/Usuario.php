@@ -31,6 +31,7 @@ class Usuario
         $usuario->setNome($body['nome']);
         $usuario->setEmail($body['email']);
         $usuario->setStatus($body['status']);
+        $usuario->setSenha($body['senha']);
 
         $data = UsuarioModel::insert($usuario);
         $code = ($data['status']) ? 201 : 500;
@@ -48,6 +49,7 @@ class Usuario
         $usuario->setNome($body['nome']);
         $usuario->setEmail($body['email']);
         $usuario->setStatus($body['status']);
+        $usuario->setSenha($body['senha']);
 
         $data = UsuarioModel::update($usuario);
         $code = ($data['status']) ? 200 : 500;
