@@ -47,7 +47,15 @@ class Autenticacao
                 ->sign($signer, JWT_SECRET)
                 ->getToken();
 
-        return $response->withJson(['token' => (string) $token], 200);
+        $data = [
+            'token' => (string) $token,
+            'usuario' => [
+                'id' => $usuario->getCodigo(),
+                'nome' => $usuario->getNome()
+            ]
+        ];
+
+        return $response->withJson($data, 200);
     }
 
     public function validateToken(Request $request, Response $response, $args)
