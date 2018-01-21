@@ -1,0 +1,12 @@
+body {
+    color: #333333;
+    font-family: "Open Sans", sans-serif;
+    padding: 0 !important;
+    margin: 0 !important;
+    font-size: 13px;
+    direction: ltr;
+}
+
+.page-container {
+    clear: both;
+}

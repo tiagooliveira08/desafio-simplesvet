@@ -1,0 +1,18 @@
+.navigation {
+    background: #444d58;
+}
+
+.navigation__list {
+}
+
+.navigation__item__link {
+    color: #bcc2cb;
+    font-size: 14px;
+    font-weight: normal;
+    padding: 16px 18px 15px 18px !important;
+}
+
+.navigation__item__link:hover {
+    color: #ffffff !important;
+    background: #55616f !important;
+}
