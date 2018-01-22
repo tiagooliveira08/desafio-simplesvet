@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { ProprietariosAction } from '../../actions';
-import { Page, PageHeader, Icon } from '../../components';
+import { Page, PageHeader } from '../../components';
 
 class ProprietariosList extends Component 
 {

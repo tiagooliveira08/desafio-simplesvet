@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { UsuariosAction } from '../../actions';
-import { Page, PageHeader, Icon } from '../../components';
+import { Page, PageHeader } from '../../components';
 
 class UsuariosList extends Component 
 {
@@ -20,7 +20,7 @@ class UsuariosList extends Component
             <tr key={ item.codigo }>
                 <td>{ item.nome }</td>
                 <td>{ item.email }</td>
-                <td>{ (item.user_status == 'A') ? 'Ativo' : 'Inativo' }</td>
+                <td>{ (item.user_status === 'A') ? 'Ativo' : 'Inativo' }</td>
             </tr>
         ));
     }
