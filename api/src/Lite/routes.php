@@ -64,5 +64,5 @@ $app->post('/upload', function (Request $request, Response $response, $args) {
 
     $fileUpload = FileUpload::imageUpload($foto);
 
-    return $response->withJson($fileUpload, 200);
+    return $response->withJson($fileUpload, $fileUpload['code']);
 });

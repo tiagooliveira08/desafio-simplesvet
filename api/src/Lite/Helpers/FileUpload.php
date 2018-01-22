@@ -15,20 +15,20 @@ class FileUpload
         ];
         
         if (empty($file)) {
-            return ['error' => 'Você não escolheu um arquivo'];
+            return ['code' => 500, 'error' => 'Você não escolheu um arquivo'];
         }
 
         if (!in_array($file->getClientMediaType(), $methodSupportedFormats)) {
-            return ['error' => 'Arquivo inválido'];
+            return ['code' => 500, 'error' => 'Arquivo inválido'];
         }
 
         if ($file->getError() === UPLOAD_ERR_OK) {
             $filename = FileUpload::moveUploadedFile(UPLOAD_DIRECTORY, $file);
             
-            return ['file' => $filename];
+            return ['code' => 200, 'file' => $filename];
         }
 
-        return ['error' => 'Erro ao enviar o arquivo'];
+        return ['code' => 500, 'error' => 'Erro ao enviar o arquivo'];
     }
 
     /**
