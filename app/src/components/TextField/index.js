@@ -2,6 +2,7 @@ import React from 'react';
 
 export default props => (
     <div className="form-group has-feedback">
+        <label htmlFor={ props.name }>{ props.label }</label>
         <input 
             type={ props.type }
             readOnly={ props.readOnly }
