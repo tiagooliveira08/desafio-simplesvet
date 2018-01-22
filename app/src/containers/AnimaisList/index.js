@@ -38,8 +38,7 @@ class AnimaisList extends Component
                 <td>{ this.findRaca(item.raca) }</td>
                 <td>{ this.findProprietario(item.proprietario) }</td>
                 <td>
-                    <Icon color="warning" onClick={() => false } icon="faPencilAlt" />
-                    <Icon color="danger" onClick={() => false } icon="faTrashAlt" />
+                    <Icon color="warning" onClick={() => this.props.history.push(`/animais/${item.codigo}`) } icon="faPencilAlt" />
                 </td>
             </tr>
         ));
