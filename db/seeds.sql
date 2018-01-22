@@ -36,3 +36,16 @@ INSERT INTO `raca` (`rac_var_nome`) VALUES
     ('Gato / Mau Egípcio'),
     ('Gato / Himalaio'),
     ('Gato / SRD');
+
+INSERT INTO `proprietario` (`pro_var_nome`, `pro_var_email`, `pro_var_telefone`) VALUES 
+    ('Cecelia Hyatt I','ykreiger@yahoo.com', '+8365148787949'),
+    ('Miss Florence Dare','reilly.alvis@hauck.org', '+6154156346485'),
+    ('Shanna Koss','madalyn89@hotmail.com', '+5676393619428'),
+    ('Dr. Janick Gaylord','gordon.kertzmann@bernier.org', '+9216076121741'),
+    ('Dr. Payton Bartell II','keshawn.koch@hotmail.com', '+8415287724109'),
+    ('Dr. Haley Trantow III','ebert.orville@yahoo.com', '+9598461458243'),
+    ('Forrest Jacobs','leffler.ludie@gmail.com', '+6838567654889'),
+    ('Courtney McDermott','lang.daphney@hotmail.com', '+9537531462126'),
+    ('Dr. Jacquelyn Bernhard','jortiz@oconnell.com', '+1848867756730'),
+    ('Dr. Brennon Stokes I','ritchie.sarai@yahoo.com', '+5211351609666'),
+    ('Dr. Darwin Metz','schiller.kailey@hotmail.com', '+5430330396508');
