@@ -34,7 +34,6 @@ export const uploadAnimalImage = (file) => {
         upload(file)
             .then(resp => {
                 toastr.success('Sucesso', 'Imagem enviada para nossos servidores!');
-                console.log(resp);
 
                 dispatch({
                     type: 'ANIMAL_IMAGE_UPLOADED',
