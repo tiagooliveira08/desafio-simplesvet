@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Route, HashRouter as Router } from 'react-router-dom';
 import Axios from 'axios';
+import ReduxToastr from 'react-redux-toastr'
 
 import { AuthAction } from '../../actions';
 import { Header, Footer, Navigation } from '../../components';
@@ -18,7 +19,7 @@ import {
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
-import "../../resources/stylesheets/custom.css"
+import './style.css';
 
 class SimplesVet extends Component 
 {
@@ -36,11 +37,10 @@ class SimplesVet extends Component
             Axios.defaults.headers.common['Authorization'] = 'Bearer ' + user.token;
 
             return (
-                <div className="">
+                <div className="app">
+                    <ReduxToastr />
                     <Header />
-                    <Navigation
-                        onLogoutClick={() => this.props.logoutAction() } 
-                        />
+                    <Navigation onLogoutClick={() => this.props.logoutAction() } />
                     <div className="page-container">
                         <Router>
                             <div>
@@ -65,8 +65,6 @@ class SimplesVet extends Component
 }
 
 const mapStateToProps = state => ({ auth: state.auth });
-const mapDispatchToProps = dispatch => bindActionCreators({ 
-    ...AuthAction,
-}, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ ...AuthAction }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(SimplesVet);
