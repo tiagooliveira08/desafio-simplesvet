@@ -3,8 +3,6 @@ import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { TextField } from '../../components';
-
 import { AuthAction } from '../../actions';
 
 import './style.css';
@@ -21,10 +19,17 @@ let Login = props => {
             </div>
             <div className="login-box-body">
                 <form onSubmit={ handleSubmit(v => props.loginAction(v)) }>
-                    <Field component={ TextField } type="email" name="email"
-                        placeholder="E-mail" icon='envelope' />
-                    <Field component={ TextField } type="password" name="senha"
-                        placeholder="Senha" icon='lock' />
+                    <div className="form-group">
+                        <label htmlFor="email" className="control-label">Nome</label>
+                        <Field component='input' type="email" name="email"
+                            placeholder="E-mail" icon='envelope' class="form-control"/>
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="senha" className="control-label">Senha</label>
+                        <Field component='input' type="password" name="senha"
+                            placeholder="Senha" icon='lock' class="form-control"/>
+                    </div>
     
                     <button type="submit" className="btn btn-primary btn-block btn-flat">
                         Entrar
