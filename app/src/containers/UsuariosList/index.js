@@ -20,11 +20,7 @@ class UsuariosList extends Component
             <tr key={ item.codigo }>
                 <td>{ item.nome }</td>
                 <td>{ item.email }</td>
-                <td>{ item.user_status }</td>
-                <td>
-                    <Icon color="warning" onClick={() => false } icon="faPencilAlt" />
-                    <Icon color="danger" onClick={() => false } icon="faTrashAlt" />
-                </td>
+                <td>{ (item.user_status == 'A') ? 'Ativo' : 'Inativo' }</td>
             </tr>
         ));
     }
@@ -40,7 +36,6 @@ class UsuariosList extends Component
                                 <th>Nome</th>
                                 <th>Email</th>
                                 <th>Status</th>
-                                <th className="table-actions">Ações</th>
                             </tr>
                         </thead>
                         <tbody>
