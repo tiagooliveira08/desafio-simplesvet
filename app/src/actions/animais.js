@@ -1,6 +1,5 @@
 import { toastr } from 'react-redux-toastr';
-import { getList, getEntry, upload } from '../services';
-
+import { getList, getEntry, upload, createEntry, updateEntry, deleteEntry } from '../services';
 import { RacasAction, ProprietariosAction } from './index';
 
 export const fetchList = () => ({
@@ -45,3 +44,36 @@ export const uploadAnimalImage = (file) => {
             })
     }
 }
+
+export const createAnimal = values => {
+    return dispatch => {
+        createEntry('animais', values)
+        .then(response => toastr.success('Sucesso', 'Animal cadastrado com sucesso!'))
+        .then(error => toastr.error('Erro', error.response.data.msg));
+    };
+};
+
+export const updateAnimal = values => {
+    return dispatch => {
+        updateEntry('animais', values, values.codigo)
+        .then(response => toastr.success('Sucesso', 'Animal atualizado com sucesso!'))
+        .then(error => {
+            console.log(error);
+        });
+    };
+};
+
+export const deleteAnimal = id => {
+    return dispatch => {
+        deleteEntry('animais', id)
+        .then(response => {
+            toastr.success('Sucesso', 'Animal apagado com sucesso');
+
+            dispatch((() => [
+                { type: 'ANIMAL_DELETED' },
+                fetchList()
+            ])());
+        })
+        .catch(error => toastr.error('Error', error.response.data.msg));
+    }
+};

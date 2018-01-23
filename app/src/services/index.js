@@ -8,6 +8,9 @@ export const login = userData => Axios.post(`${API_URL}/auth/login`, userData)
 export const validate = token => Axios.post(`${API_URL}/auth/validate`, { token })
 export const getList = (endpoint) => Axios.get(`${API_URL}/${endpoint}`);
 export const getEntry = (endpoint, id) => Axios.get(`${API_URL}/${endpoint}/${id}`);
+export const createEntry = (endpoint, data) => Axios.post(`${API_URL}/${endpoint}`, data);
+export const updateEntry = (endpoint, data, id) => Axios.put(`${API_URL}/${endpoint}/${id}`, data);
+export const deleteEntry = (endpoint, id) => Axios.delete(`${API_URL}/${endpoint}/${id}`);
 
 export const upload = (file) => {
     const formData = new FormData();
@@ -21,3 +24,4 @@ export const upload = (file) => {
 
     return Axios.post(`${API_URL}/upload`, formData, config);
 };
+

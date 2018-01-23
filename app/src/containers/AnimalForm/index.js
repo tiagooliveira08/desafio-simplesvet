@@ -89,19 +89,24 @@ class AnimalForm extends Component {
                 </div>
                 <div className="box-footer">
                     <button type="submit" className={`btn btn-success`}>Salvar</button>
-                    <button type="button" className="btn btn-default" onClick={ () => false }>Cancelar</button>
+                    <button type="button" className="btn btn-default" onClick={ () => this.props.history.push(`/animais`) }>Cancelar</button>
                 </div>
             </form>
         )
     }
 }
 
-AnimalForm = reduxForm({ form: 'animalForm', destroyOnUnmount: false })(AnimalForm);
+AnimalForm = reduxForm({ form: 'animalForm', enableReinitialize: true })(AnimalForm);
 
 const selector = formValueSelector('animalForm');
 
 const mapStateToProps = state => ({
     foto: selector(state, 'foto'),
+    nome: selector(state, 'nome'),
+    vivo: selector(state, 'vivo'),
+    peso: selector(state, 'peso'),
+    raca: selector(state, 'raca'),
+    proprietario: selector(state, 'proprietario'),
     racas: state.racas.list,
     proprietarios: state.proprietarios.list,
 });

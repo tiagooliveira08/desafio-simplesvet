@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { reduxForm, Field, formValueSelector } from 'redux-form';
 
 import { AnimaisAction } from '../../actions';
-import { Page, PageHeader, AnimalForm } from '../../components';
+import { Page, PageHeader } from '../../components';
+import { AnimalForm } from '../index';
 
 class AnimaisEdit extends Component 
 {
     componentWillMount()
     {
         this.props.fetchAnimailData(this.props.match.params.id);
-
-        this.fotoUpload = this.fotoUpload.bind(this);
+        this.handleFotoUpload = this.handleFotoUpload.bind(this);
     }
 
-    fotoUpload(e) {
+    handleFotoUpload(e) {
         const file = e.target.files[0];
         this.props.uploadAnimalImage(file);
     }
@@ -31,7 +30,13 @@ class AnimaisEdit extends Component
             <div>
                 <PageHeader title={`Editando Animal: ${animal.nome} (#${animal.codigo})`}/>
                 <Page>
-                    <AnimalForm initialValues={animal} additionalData={{ racas, proprietarios }} fotoUpload={this.fotoUpload} />
+                    <AnimalForm 
+                        initialValues={animal} 
+                        additionalData={{ racas, proprietarios }} 
+                        fotoUpload={this.handleFotoUpload} 
+                        onSubmit={this.props.updateAnimal}
+                        history={this.props.history}
+                    />
                 </Page>
             </div>
         )
@@ -39,13 +44,9 @@ class AnimaisEdit extends Component
 }
 
 const mapStateToProps = state => ({
-    animal: state.animais.current,
-    racas: state.racas.list,
-    proprietarios: state.proprietarios.list,
+    animal: state.animais.current
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({ 
-    ...AnimaisAction
-}, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ ...AnimaisAction }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(AnimaisEdit);

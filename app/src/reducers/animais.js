@@ -14,6 +14,6 @@ export default (state = INITIAL_STATE, action) => {
             current.foto = action.payload;
             return {...state, current };
         default:
-            return state
+            return state;
     }
 };
