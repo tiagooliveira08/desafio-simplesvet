@@ -22,13 +22,13 @@ let Login = props => {
                     <div className="form-group">
                         <label htmlFor="email" className="control-label">Nome</label>
                         <Field component='input' type="email" name="email"
-                            placeholder="E-mail" icon='envelope' class="form-control"/>
+                            placeholder="E-mail" icon='envelope' className="form-control"/>
                     </div>
 
                     <div className="form-group">
                         <label htmlFor="senha" className="control-label">Senha</label>
                         <Field component='input' type="password" name="senha"
-                            placeholder="Senha" icon='lock' class="form-control"/>
+                            placeholder="Senha" icon='lock' className="form-control"/>
                     </div>
     
                     <button type="submit" className="btn btn-primary btn-block btn-flat">
