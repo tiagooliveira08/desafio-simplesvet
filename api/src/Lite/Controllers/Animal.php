@@ -40,10 +40,10 @@ class Animal
         $body = $request->getParsedBody();
 
         $proprietario = new ProprietarioEntity;
-        $proprietario->setCodigo($body['codigo_proprietario']);
+        $proprietario->setCodigo($body['proprietario']);
 
         $raca = new RacaEntity;
-        $raca->setCodigo($body['codigo_raca']);
+        $raca->setCodigo($body['raca']);
 
         $animal = new AnimalEntity();
         $animal->setNome($body['nome']);
@@ -65,10 +65,10 @@ class Animal
         $codigo = $request->getAttribute('codigo');
 
         $proprietario = new ProprietarioEntity;
-        $proprietario->setCodigo($body['codigo_proprietario']);
+        $proprietario->setCodigo($body['proprietario']);
 
         $raca = new RacaEntity;
-        $raca->setCodigo($body['codigo_raca']);
+        $raca->setCodigo($body['raca']);
         
         $animal = new AnimalEntity();
         $animal->setCodigo($codigo);
