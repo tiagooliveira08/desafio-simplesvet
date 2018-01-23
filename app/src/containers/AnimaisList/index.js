@@ -48,7 +48,9 @@ class AnimaisList extends Component
     render() {
         return (
             <div>
-                <PageHeader title="Animais"/>
+                <PageHeader title="Animais">
+                    <button className="btn btn-default pull-right" onClick={() => this.props.history.push('/novo-animal')}>Cadastrar um animal</button>
+                </PageHeader>
                 <Page>
                     <table className="table">
                         <thead>

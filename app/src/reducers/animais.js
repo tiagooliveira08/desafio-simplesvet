@@ -13,6 +13,8 @@ export default (state = INITIAL_STATE, action) => {
             const current = state.current;
             current.foto = action.payload;
             return {...state, current };
+        case 'CLEAN_CURRENT_ANIMAL': 
+            return { ...state, current: {} };
         default:
             return state;
     }

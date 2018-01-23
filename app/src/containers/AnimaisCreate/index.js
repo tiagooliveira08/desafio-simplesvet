@@ -6,11 +6,12 @@ import { AnimaisAction } from '../../actions';
 import { Page, PageHeader } from '../../components';
 import { AnimalForm } from '../index';
 
-class AnimaisEdit extends Component 
+class AnimaisCreate extends Component 
 {
     componentWillMount()
     {
-        this.props.fetchAnimailData(this.props.match.params.id);
+        this.props.fetchAnimaisData();
+        this.props.cleanCurrentAnimal();
         this.handleFotoUpload = this.handleFotoUpload.bind(this);
     }
 
@@ -20,18 +21,14 @@ class AnimaisEdit extends Component
     }
 
     render() {
-        if(!this.props.animal.nome){
-            return false;
-        }
-
         return (
             <div>
-                <PageHeader title={`Editando Animal: ${this.props.animal.nome} (#${this.props.animal.codigo})`}/>
+                <PageHeader title={`Novo Animal`}/>
                 <Page>
                     <AnimalForm 
                         initialValues={this.props.animal} 
                         fotoUpload={this.handleFotoUpload} 
-                        onSubmit={this.props.updateAnimal}
+                        onSubmit={this.props.createAnimal}
                         history={this.props.history}
                     />
                 </Page>
@@ -46,4 +43,4 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({ ...AnimaisAction }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(AnimaisEdit);
+export default connect(mapStateToProps, mapDispatchToProps)(AnimaisCreate);

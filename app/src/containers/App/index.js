@@ -15,6 +15,7 @@ import {
     AnimaisEdit,
     UsuariosList, 
     ProprietariosList, 
+    AnimaisCreate,
 } from '../index';
 
 import 'bootstrap/dist/css/bootstrap.css';
@@ -46,6 +47,7 @@ class SimplesVet extends Component
                             <div>
                                 <Route path="/" component={ Home } exact/>
                                 <Route path="/animais" component={ AnimaisList } exact />
+                                <Route path="/novo-animal" component={ AnimaisCreate } exact />
                                 <Route path="/animais/:id" component={ AnimaisEdit } exact />
                                 <Route path="/usuarios" component={ UsuariosList } exact />
                                 <Route path="/proprietarios" component={ ProprietariosList } exact />

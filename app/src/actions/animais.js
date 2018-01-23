@@ -77,3 +77,7 @@ export const deleteAnimal = id => {
         .catch(error => toastr.error('Error', error.response.data.msg));
     }
 };
+
+export const cleanCurrentAnimal = () => ({
+    type: 'CLEAN_CURRENT_ANIMAL'
+});

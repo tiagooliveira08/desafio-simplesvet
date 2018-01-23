@@ -16,8 +16,18 @@ class AnimalForm extends Component {
         document.getElementById('animalFotoFile').click();
     }
 
-    getFileUrl(file) {
-        return `${UPLOADS_URL}/${file}`;
+    renderAnimalFoto() {
+        if(this.props.initialValues && this.props.initialValues.foto) {
+            return (
+                <img src={`${UPLOADS_URL}/${this.props.initialValues.foto}`} id="animalFotoPreview" alt="Foto do Animal"/>
+            )
+        }
+
+        if(this.props.foto) {
+            <img src={`${UPLOADS_URL}/${this.props.foto}`} id="animalFotoPreview" alt="Foto do Animal"/>
+        }
+
+        return false;
     }
 
     render() {
@@ -76,8 +86,8 @@ class AnimalForm extends Component {
                                 <div className="anima-form__foto">
                                     <label htmlFor="fotoSeletor" className="control-label">Foto</label>
                                     <Field name="foto" component="input" type="hidden" className="form-control"/>
-                                    <img src={this.getFileUrl(this.props.initialValues.foto)} id="animalFotoPreview" alt="Foto do Animal"/>
-                                    <button onClick={this.onFotoButtonClick} className="btn btn-default btn-block">Alterar Foto</button>
+                                    {this.renderAnimalFoto()}
+                                    <button onClick={this.onFotoButtonClick} className="btn btn-default btn-block">{ this.props.foto ? 'Alterar Foto' : 'Adicionar Foto' }</button>
                                     <div className="hide">
                                         <input type="file" id="animalFotoFile" className="form-control" name="foto" onChange={(e) => this.props.fotoUpload(e)} />
                                     </div>
