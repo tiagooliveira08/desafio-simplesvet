@@ -37,7 +37,7 @@ class AnimaisList extends Component
                 <td>{ item.peso }</td>
                 <td>{ this.findRaca(item.raca) }</td>
                 <td>{ this.findProprietario(item.proprietario) }</td>
-                <td>
+                <td style={{ width: '150px' }}>
                     <Icon color="warning" onClick={() => this.props.history.push(`/animais/${item.codigo}`) } icon="faPencilAlt" />
                     <Icon color="danger" onClick={() => this.props.deleteAnimal(item.codigo) } icon="faTrashAlt" />
                 </td>
