@@ -57,8 +57,8 @@ BEGIN
 
     START TRANSACTION;
 
-    INSERT INTO animal (ani_var_nome, ani_dec_peso, rac_int_codigo, ani_cha_vivo, pro_int_codigo, ani_var_foto, ani_var_foto)
-    VALUES (p_ani_var_nome, p_ani_dec_peso, p_rac_int_codigo, p_ani_cha_vivo, p_pro_int_codigo, p_ani_var_foto, p_ani_var_foto);
+    INSERT INTO animal (ani_var_nome, ani_dec_peso, rac_int_codigo, ani_cha_vivo, pro_int_codigo, ani_var_foto)
+    VALUES (p_ani_var_nome, p_ani_dec_peso, p_rac_int_codigo, p_ani_cha_vivo, p_pro_int_codigo, p_ani_var_foto);
 
     COMMIT;
 
