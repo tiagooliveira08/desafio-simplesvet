@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { AnimaisAction } from '../../actions';
+import { AnimaisAction, ProprietariosAction, RacasAction } from '../../actions';
 import { Page, PageHeader } from '../../components';
 import { AnimalForm } from '../index';
 
@@ -10,7 +10,8 @@ class AnimaisCreate extends Component
 {
     componentWillMount()
     {
-        this.props.fetchAnimaisData();
+        this.props.getProprietariosList();
+        this.props.getRacasList();
         this.props.cleanCurrentAnimal();
         this.handleFotoUpload = this.handleFotoUpload.bind(this);
     }
@@ -41,6 +42,6 @@ const mapStateToProps = state => ({
     animal: state.animais.current
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({ ...AnimaisAction }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ ...AnimaisAction, ...RacasAction, ...ProprietariosAction }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(AnimaisCreate);
