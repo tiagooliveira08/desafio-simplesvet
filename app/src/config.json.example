@@ -1,0 +1,4 @@
+{
+    "API_URL": "http://localhost/desafio-simplesvet/api/",
+    "UPLOADS_URL": "http://localhost/desafio-simplesvet/api/public/uploads/"
+}
