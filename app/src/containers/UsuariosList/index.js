@@ -9,7 +9,7 @@ class UsuariosList extends Component
 {
     componentWillMount()
     {
-        this.props.fetchList();
+        this.props.getUsuariosList();
     }
 
     renderRows()

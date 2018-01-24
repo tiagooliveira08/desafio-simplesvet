@@ -4,7 +4,7 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
     switch(action.type) {
-        case 'USUARIOS_FETCHED' : 
+        case 'GET_USUARIOS_LIST' : 
             return { ...state, list: action.payload.data }
         default:
             return state
