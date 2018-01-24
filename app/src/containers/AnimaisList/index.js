@@ -9,7 +9,7 @@ class AnimaisList extends Component
 {
     componentWillMount()
     {
-        this.props.fetchAnimaisData();
+        this.props.getAnimalList();
     }
 
     findRaca(codigo_raca)
@@ -79,8 +79,6 @@ const mapStateToProps = state => ({
     proprietarios: state.proprietarios.list,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({ 
-    ...AnimaisAction
-}, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ ...AnimaisAction }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(AnimaisList);
