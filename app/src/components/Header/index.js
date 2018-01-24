@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.css';
-import logo from '../../resources/images/logo-simplesvet.png';
+import logo from '../../images/logo-simplesvet.png';
 
 export default props => (
     <div className="header">
