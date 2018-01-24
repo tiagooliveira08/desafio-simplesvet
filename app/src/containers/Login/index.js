@@ -18,7 +18,7 @@ let Login = props => {
                 <img src={logo} alt="logo" />
             </div>
             <div className="login-box-body">
-                <form onSubmit={ handleSubmit(v => props.loginAction(v)) }>
+                <form onSubmit={ handleSubmit(v => props.login(v)) }>
                     <div className="form-group">
                         <label htmlFor="email" className="control-label">Nome</label>
                         <Field component='input' type="email" name="email"
