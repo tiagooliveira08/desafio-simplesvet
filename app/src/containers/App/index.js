@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Route, HashRouter as Router } from 'react-router-dom';
-import Axios from 'axios';
 import ReduxToastr from 'react-redux-toastr'
 
 import { AuthAction } from '../../actions';
 import { Header, Footer, Navigation } from '../../components';
+import { service } from '../../services';
 
 import { 
     Home, 
@@ -27,7 +27,7 @@ class SimplesVet extends Component
     componentWillMount() 
     {
         if(this.props.auth.user)
-            this.props.validateTokenAction(this.props.auth.user.token);
+            this.props.validate(this.props.auth.user.token);
     }
 
     render() 
@@ -35,13 +35,13 @@ class SimplesVet extends Component
         const { user, validToken } = this.props.auth;
         
         if(user && validToken) {
-            Axios.defaults.headers.common['Authorization'] = 'Bearer ' + user.token;
+            service.setHeader('Authorization', 'Bearer ' + user.token);
 
             return (
                 <div className="app">
                     <ReduxToastr />
                     <Header />
-                    <Navigation onLogoutClick={() => this.props.logoutAction() } />
+                    <Navigation onLogoutClick={() => this.props.logout() } />
                     <div className="page-container">
                         <Router>
                             <div>
