@@ -9,7 +9,7 @@ class ProprietariosList extends Component
 {
     componentWillMount()
     {
-        this.props.fetchList();
+        this.props.getProprietariosList();
     }
 
     renderRows()
@@ -52,8 +52,6 @@ const mapStateToProps = state => ({
     proprietarios: state.proprietarios.list,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({ 
-    ...ProprietariosAction
-}, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ ...ProprietariosAction }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProprietariosList);
