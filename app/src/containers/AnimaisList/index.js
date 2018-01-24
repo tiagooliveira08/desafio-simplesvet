@@ -5,6 +5,10 @@ import { bindActionCreators } from 'redux';
 import { AnimaisAction } from '../../actions';
 import { Page, PageHeader, Icon } from '../../components';
 
+import { UPLOADS_URL } from '../../services';
+
+import './style.css';
+
 class AnimaisList extends Component 
 {
     componentWillMount()
@@ -32,6 +36,9 @@ class AnimaisList extends Component
 
         return list.map(item => (
             <tr key={ item.codigo }>
+                <td className="animal__list__foto">
+                    <img src={`${UPLOADS_URL}/${item.foto}`} alt={`Foto de ${item.nome}`} className="animal__list__foto"/>
+                </td>
                 <td>{ item.nome }</td>
                 <td>{ item.vivo }</td>
                 <td>{ item.peso }</td>
@@ -55,6 +62,7 @@ class AnimaisList extends Component
                     <table className="table">
                         <thead>
                             <tr>
+                                <th>Foto</th>
                                 <th>Nome</th>
                                 <th>Vivo</th>
                                 <th>Peso</th>
