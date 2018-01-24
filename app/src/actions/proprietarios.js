@@ -1,6 +1,6 @@
-import { getList } from '../services';
+import { service } from '../services';
 
-export const fetchList = () => ({
-    type: 'PROPRIETARIOS_FETCHED',
-    payload: getList('proprietarios')
+export const getProprietariosList = () => ({
+    type: 'GET_PROPRIETARIOS_LIST',
+    payload: service.get('/proprietarios')
 });
