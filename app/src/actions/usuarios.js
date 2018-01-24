@@ -1,6 +1,6 @@
-import { getList } from '../services';
+import { service } from '../services';
 
 export const fetchList = () => ({
     type: 'USUARIOS_FETCHED',
-    payload: getList('usuarios')
+    payload: service.get('/usuarios')
 });
