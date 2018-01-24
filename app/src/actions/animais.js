@@ -1,78 +1,64 @@
 import { toastr } from 'react-redux-toastr';
-import { getList, getEntry, upload, createEntry, updateEntry, deleteEntry } from '../services';
+import { service } from '../services';
 import { RacasAction, ProprietariosAction } from './index';
 
-export const fetchList = () => ({
-    type: 'ANIMAIS_FETCHED',
-    payload: getList('animais')
-});
-
-export const fetchEntry = (id) => ({
-    type: 'ANIMAL_FETCHED',
-    payload: getEntry('animais', id)
-});
-
-export const fetchAnimaisData = () => {
+export const getAnimalList = () => {
     return [
-        RacasAction.fetchList(),
-        ProprietariosAction.fetchList(),
-        fetchList(),
+        RacasAction.getRacasList(),
+        ProprietariosAction.getProprietariosList(),
+        {
+            type: 'GET_ANIMAL_LIST',
+            payload: service.get('/animais')
+        },
     ];
 };
 
-export const fetchAnimailData = (id) => {
+export const getAnimalEntry = id => {
     return [
-        RacasAction.fetchList(),
-        ProprietariosAction.fetchList(),
-        fetchEntry(id)
+        RacasAction.getRacasList(),
+        ProprietariosAction.getProprietariosList(),
+        {
+            type: 'GET_ANIMAL_ENTRY',
+            payload: service.get(`/animais/${id}`)
+        }
     ];
 };
 
-export const uploadAnimalImage = (file) => {
+export const uploadAnimalImage = image => {
     return dispatch => {
-        upload(file)
-            .then(resp => {
-                toastr.success('Sucesso', 'Imagem enviada para nossos servidores!');
+        const data = new FormData();
+        data.append('foto', image);
 
-                dispatch({
-                    type: 'ANIMAL_IMAGE_UPLOADED',
-                    payload: resp.data.file
-                });
-            })
-            .catch(e => {
-                toastr.error('Erro!', e.response.data.error);
-            })
+        service.post('/upload', data, { headers: { 'content-type': 'multipart/form-data' } }).then(resp => {
+            toastr.success('Sucesso', 'Imagem enviada para nossos servidores!');
+            dispatch({ type: 'ANIMAL_IMAGE_UPLOADED', payload: resp.data.file });
+        })
+        .catch(e => toastr.error('Erro!', e.response.data.error));
     }
 }
 
 export const createAnimal = values => {
     return dispatch => {
-        createEntry('animais', values)
+        service.post('/animais', values)
         .then(response => toastr.success('Sucesso', 'Animal cadastrado com sucesso!'))
-        .then(error => toastr.error('Erro', error.response.data.msg));
+        .catch(error => toastr.error('Erro', error.response.data.msg));
     };
 };
 
 export const updateAnimal = values => {
     return dispatch => {
-        updateEntry('animais', values, values.codigo)
+        service.put(`/animais/${values.codigo}`, values)
         .then(response => toastr.success('Sucesso', 'Animal atualizado com sucesso!'))
-        .then(error => {
-            console.log(error);
-        });
+        .catch(error => toastr.error('Erro', error.response.data.msg));
     };
 };
 
 export const deleteAnimal = id => {
     return dispatch => {
-        deleteEntry('animais', id)
+        service.delete(`/animais/${id}`)
         .then(response => {
             toastr.success('Sucesso', 'Animal apagado com sucesso');
-
-            dispatch((() => [
-                { type: 'ANIMAL_DELETED' },
-                fetchList()
-            ])());
+            dispatch(getAnimalList());
         })
         .catch(error => toastr.error('Error', error.response.data.msg));
     }

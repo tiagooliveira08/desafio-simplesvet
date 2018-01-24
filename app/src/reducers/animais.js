@@ -5,9 +5,9 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
     switch(action.type) {
-        case 'ANIMAIS_FETCHED' : 
+        case 'GET_ANIMAL_LIST' : 
             return { ...state, list: action.payload.data }
-        case 'ANIMAL_FETCHED':
+        case 'GET_ANIMAL_ENTRY':
             return {...state, current: action.payload.data };
         case 'ANIMAL_IMAGE_UPLOADED':
             const current = state.current;
