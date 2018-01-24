@@ -22,6 +22,11 @@ class Animal
                     pro_int_codigo as proprietario,
                     ani_var_foto as foto 
                 FROM vw_animal");
+
+            $return = array_map(function($animal){ 
+                return self::formatAnimalResponse($animal);
+             }, $return);
+             
         } catch (GDbException $e) {
             echo $e->getError();
         }
@@ -55,6 +60,8 @@ class Animal
             
             if ($mysql->fetch()) {
                 $ret = $mysql->res;
+
+                $ret = self::formatAnimalResponse($ret);
             }
             $mysql->close();
         } catch (GDbException $e) {
@@ -145,5 +152,14 @@ class Animal
             $return["msg"] = $e->getError();
         }
         return $return;
+    }
+
+    private static function formatAnimalResponse($animal) 
+    {
+        $formated = [
+            'peso' => number_format($animal['peso'], 3, ',', '.')
+        ];
+
+        return array_merge($animal, $formated);
     }
 }
