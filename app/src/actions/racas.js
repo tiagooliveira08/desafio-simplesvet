@@ -1,6 +1,6 @@
-import { getList } from '../services';
+import { service } from '../services';
 
-export const fetchList = () => ({
-    type: 'RACAS_FETCHED',
-    payload: getList('racas')
+export const getRacasList = () => ({
+    type: 'GET_RACAS_LIST',
+    payload: service.get('/racas')
 });

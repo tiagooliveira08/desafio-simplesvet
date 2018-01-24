@@ -4,9 +4,9 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
     switch(action.type) {
-        case 'RACAS_FETCHED' : 
+        case 'GET_RACAS_LIST' : 
             return { ...state, list: action.payload.data }
         default:
             return state
     }
-}
+};
