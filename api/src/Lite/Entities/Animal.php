@@ -50,7 +50,7 @@ class Animal
 
     public function setPeso($peso)
     {
-        $this->ani_dec_peso = floatval(str_replace(['.', ','], ['','.'], $peso));
+        $this->ani_dec_peso = $peso;
     }
 
     public function getRaca()
