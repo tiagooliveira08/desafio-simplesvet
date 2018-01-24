@@ -2,11 +2,12 @@
   "name": "simplesvet",
   "version": "0.1.0",
   "private": true,
-  "homepage" : "http://apps.diegocosta.com.br/simplesvet",
+  "homepage": "http://apps.diegocosta.com.br/simplesvet",
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.2",
     "@fortawesome/fontawesome-free-solid": "^5.0.4",
     "@fortawesome/react-fontawesome": "^0.0.17",
+    "apisauce": "^0.14.3",
     "axios": "^0.17.1",
     "bootstrap": "3",
     "react": "^16.2.0",
