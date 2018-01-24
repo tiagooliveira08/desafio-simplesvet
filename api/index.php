@@ -12,7 +12,9 @@ $envConfig = [
     'MYSQL_CHARSET',
     'MYSQL_TIMEZONE',
     'PHP_TIMEZONE',
-    'UPLOAD_DIRECTORY'
+    'UPLOAD_DIRECTORY',
+    'JWT_SECRET',
+    'JWT_ISSUER'
 ];
 
 // Load variables
