@@ -10,7 +10,7 @@ class AnimaisEdit extends Component
 {
     componentWillMount()
     {
-        this.props.fetchAnimailData(this.props.match.params.id);
+        this.props.getAnimalEntry(this.props.match.params.id);
         this.handleFotoUpload = this.handleFotoUpload.bind(this);
     }
 
