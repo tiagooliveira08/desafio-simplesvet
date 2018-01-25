@@ -10,6 +10,8 @@
     font-size: 14px;
     font-weight: normal;
     padding: 16px 18px 15px 18px !important;
+    background: transparent;
+    border: 0;
 }
 
 .navigation__item__link:hover {

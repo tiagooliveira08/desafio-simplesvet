@@ -2,46 +2,58 @@ import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
 
-import { AuthAction } from '../../actions';
-
+import { actions as authActions } from '../../redux/auth';
 import './style.css';
 
-import logo from '../../images/logo-simplesvet.png';
+import { TextField } from '../../components';
+import { logo } from '../../images';
 
-let Login = props => {
-    const { handleSubmit } = props;
+const required = value => (value ? undefined : 'Campo de preenchimento obrigatório!');
 
-    return (
-        <div className="login-box">
-            <div className="login-logo">
-                <img src={logo} alt="logo" />
-            </div>
-            <div className="login-box-body">
-                <form onSubmit={ handleSubmit(v => props.login(v)) }>
-                    <div className="form-group">
-                        <label htmlFor="email" className="control-label">Nome</label>
-                        <Field component='input' type="email" name="email"
-                            placeholder="E-mail" icon='envelope' className="form-control"/>
-                    </div>
+let Login = props => (
+  <div className="login-box">
+    <div className="login-logo">
+      <img src={logo} alt="logo" />
+    </div>
+    <div className="login-box-body">
+      <form onSubmit={props.handleSubmit(v => props.login(v))}>
+        <Field
+          component={TextField}
+          label="E-mail"
+          type="email"
+          name="email"
+          id="email"
+          placeholder="fulano@email.com"
+          validate={[required]}
+        />
 
-                    <div className="form-group">
-                        <label htmlFor="senha" className="control-label">Senha</label>
-                        <Field component='input' type="password" name="senha"
-                            placeholder="Senha" icon='lock' className="form-control"/>
-                    </div>
-    
-                    <button type="submit" className="btn btn-primary btn-block btn-flat">
-                        Entrar
-                    </button>
-                </form>
-            </div>
-        </div>
-    );
-}
+        <Field
+          component={TextField}
+          label="Senha"
+          type="password"
+          name="senha"
+          id="senha"
+          placeholder="******"
+          validate={[required]}
+        />
+
+        <button type="submit" className="btn btn-primary btn-block btn-flat">
+            Entrar
+        </button>
+      </form>
+    </div>
+  </div>
+);
+
+Login.propTypes = {
+  login: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+};
 
 Login = reduxForm({ form: 'authForm' })(Login);
 
-const mapDispatchToProps = dispatch => bindActionCreators({ ...AuthAction }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ ...authActions }, dispatch);
 
 export default connect(null, mapDispatchToProps)(Login);

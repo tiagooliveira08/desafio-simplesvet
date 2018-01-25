@@ -10,3 +10,35 @@ body {
 .page-container {
     clear: both;
 }
+
+.header {
+    background: #ffffff;
+    height: 75px;
+}
+
+.header__logo {
+    float: left;
+    width: 255px;
+    height: 75px;
+    display: flex;
+    align-items: center;
+}
+
+.header__logo__image {
+    width: 190px;
+}
+
+.page-prefooter {
+    background: #48525e;
+    color: #a2abb7;
+    padding: 30px 0;
+    clear: both;
+}
+
+.page-footer {
+    background: #3b434c;
+    color: #a2abb7;
+    font-size: 12px;
+    font-weight: 300;
+    padding: 17px 0;
+}

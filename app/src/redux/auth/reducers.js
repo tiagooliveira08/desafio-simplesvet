@@ -3,26 +3,26 @@ import { types } from './actions';
 const userKey = '_simplesvet_user';
 
 const INITIAL_STATE = {
-    user: JSON.parse(localStorage.getItem(userKey)),
-    validToken: false
+  user: JSON.parse(localStorage.getItem(userKey)),
+  validToken: false,
 };
 
 export default (state = INITIAL_STATE, action) => {
-    switch(action.type) {
-        case types.TOKEN_VALIDATED:
+  switch (action.type) {
+    case types.TOKEN_VALIDATED:
 
-            if(action.payload) {
-                return {...state, validToken: true}
-            }
+      if (action.payload) {
+        return { ...state, validToken: true };
+      }
 
-            localStorage.removeItem(userKey)
-            return {...state, validToken: false, user: null}
+      localStorage.removeItem(userKey);
+      return { ...state, validToken: false, user: null };
 
-        case types.USER_FETCHED:
-            localStorage.setItem(userKey, JSON.stringify(action.payload))
-            return {...state, user: action.payload, validToken: true}
-            
-        default:
-            return state
-    }
+    case types.USER_FETCHED:
+      localStorage.setItem(userKey, JSON.stringify(action.payload));
+      return { ...state, user: action.payload, validToken: true };
+
+    default:
+      return state;
+  }
 };

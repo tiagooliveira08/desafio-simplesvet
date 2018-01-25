@@ -9,13 +9,13 @@ import UsuariosList from './UsuariosList';
 import ProprietariosList from './ProprietariosList';
 
 export {
-    App,
-    Home,
-    Login,
-    AnimaisList,
-    UsuariosList,
-    AnimaisEdit,
-    ProprietariosList,
-    AnimalForm,
-    AnimaisCreate,
+  App,
+  Home,
+  Login,
+  AnimaisList,
+  UsuariosList,
+  AnimaisEdit,
+  ProprietariosList,
+  AnimalForm,
+  AnimaisCreate,
 };

@@ -1,4 +1,4 @@
-import { service } from '../services';
+import { service } from '../../service';
 
 export const types = {
   GET_LIST: 'GET_USUARIOS_LIST',

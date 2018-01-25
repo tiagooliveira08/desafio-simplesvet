@@ -1,10 +1,10 @@
-import { service } from '../services';
+import { service } from '../../service';
 
 export const types = {
-    GET_LIST: 'GET_PROPRIETARIOS_LIST'
+  GET_LIST: 'GET_PROPRIETARIOS_LIST',
 };
 
 export const getProprietariosList = () => ({
-    type: types.GET_LIST,
-    payload: service.get('/proprietarios')
+  type: types.GET_LIST,
+  payload: service.get('/proprietarios'),
 });

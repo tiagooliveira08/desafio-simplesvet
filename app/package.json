@@ -10,6 +10,7 @@
     "apisauce": "^0.14.3",
     "bootstrap": "3",
     "inputmask": "^3.3.11",
+    "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-bootstrap": "^0.32.0",
     "react-dom": "^16.2.0",
@@ -29,7 +30,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "lint": "eslint src/",
-		"lint:fix": "eslint --fix src/"
+    "lint:fix": "eslint --fix src/"
   },
   "devDependencies": {
     "eslint": "^4.16.0",
