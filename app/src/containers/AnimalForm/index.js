@@ -13,8 +13,10 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { UPLOADS_URL } from '../../service';
-import { TextField } from '../../components';
+import { TextField, ComboField } from '../../components';
 import './style.css';
+
+const required = value => (value ? undefined : 'Campo de preenchimento obrigatório!');
 
 class AnimalForm extends Component {
   constructor(props) {
@@ -63,12 +65,13 @@ class AnimalForm extends Component {
                 component={TextField}
                 type="text"
                 placeholder="Informe o nome"
+                validate={[required]}
               />
 
               <div className="form-group">
                 <label htmlFor="vivo" className="control-label">Está vivo?</label>
                 <label className="radio-inline">
-                  <Field name="vivo" component="input" type="radio" value="S" /> Sim
+                  <Field name="vivo" component="input" type="radio" value="S" checked/> Sim
                 </label>
                 <label className="radio-inline">
                   <Field name="vivo" component="input" type="radio" value="N" /> Não
@@ -82,31 +85,27 @@ class AnimalForm extends Component {
                 component={TextField}
                 type="text"
                 className="form-control--decimal form-control"
+                validate={[required]}
               />
 
-              <div className="form-group">
-                <label htmlFor="raca" className="control-label">Raça</label>
-                <Field name="raca" component="select" className="form-control">
-                  <option value="">Selecione a raça do animal</option>
-                  {this.props.racas.map(raca => (
-                    <option value={raca.codigo} key={raca.codigo}>
-                      {raca.nome}
-                    </option>
-                  ))}
-                </Field>
-              </div>
+              <Field label="Raça" name="raca" component={ComboField} className="form-control" validate={[required]}>
+                <option value="">Selecione a raça do animal</option>
+                {this.props.racas.map(raca => (
+                  <option value={raca.codigo} key={raca.codigo}>
+                    {raca.nome}
+                  </option>
+                ))}
+              </Field>
 
-              <div className="form-group">
-                <label htmlFor="proprietario" className="control-label">Proprietário</label>
-                <Field name="proprietario" component="select" className="form-control">
-                  <option value="">Selecione o proprietário do animal</option>
-                  {this.props.proprietarios.map(proprietario => (
-                    <option value={proprietario.codigo} key={proprietario.codigo}>
-                      {proprietario.nome} - (#{proprietario.codigo})
-                    </option>
-                  ))}
-                </Field>
-              </div>
+
+              <Field label="Proprietário" name="proprietario" component={ComboField} className="form-control" validate={[required]}>
+                <option value="">Selecione o proprietário do animal</option>
+                {this.props.proprietarios.map(proprietario => (
+                  <option value={proprietario.codigo} key={proprietario.codigo}>
+                    {proprietario.nome} - (#{proprietario.codigo})
+                  </option>
+                ))}
+              </Field>
 
             </div>
             <div className="col-xs-12 col-md-4">
