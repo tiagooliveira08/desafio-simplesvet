@@ -1,3 +1,5 @@
+import { toastr } from 'react-redux-toastr';
+
 import { service } from '../../service';
 
 import { actions as animaisAction } from '../animais';
