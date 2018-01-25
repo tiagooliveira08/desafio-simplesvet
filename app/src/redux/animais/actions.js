@@ -36,10 +36,14 @@ export const uploadAnimalImage = image => (dispatch) => {
 
   service.post('/upload', data, { headers: { 'content-type': 'multipart/form-data' } })
     .then((resp) => {
+      if(resp.status === 500) {
+        throw new Error('Erro ao enviar imagem!');
+      }
+
       toastr.success('Sucesso', 'Imagem enviada para nossos servidores!');
       dispatch({ type: types.UPLOAD_IMAGE, payload: resp.data.file });
     })
-    .catch(e => toastr.error('Erro!', e.response.data.error));
+    .catch(e => toastr.error('Erro!', e));
 };
 
 export const createAnimal = values => () => {
@@ -51,7 +55,7 @@ export const createAnimal = values => () => {
 
       return toastr.success('Sucesso', 'Animal cadastrado com sucesso!');
     })
-    .catch(error => toastr.error('Erro', error));
+    .catch(error => toastr.error('Erro', 'Erro ao cadastrar animal'));
 };
 
 export const updateAnimal = values => () => {
@@ -63,7 +67,7 @@ export const updateAnimal = values => () => {
 
       return toastr.success('Sucesso', 'Animal atualizado com sucesso!');
     })
-    .catch(error => toastr.error('Erro', error));
+    .catch(error => toastr.error('Erro', 'Erro ao atualizar animal'));
 };
 
 export const deleteAnimal = id => (dispatch) => {
@@ -76,7 +80,7 @@ export const deleteAnimal = id => (dispatch) => {
       dispatch(getAnimalList());
       return toastr.success('Sucesso', 'Animal apagado com sucesso');
     })
-    .catch(error => toastr.error('Error', error));
+    .catch(error => toastr.error('Error', 'Erro ao apagar animal'));
 };
 
 export const cleanCurrentAnimal = () => [
