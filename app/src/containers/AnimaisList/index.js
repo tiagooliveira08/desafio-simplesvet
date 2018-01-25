@@ -33,6 +33,12 @@ class AnimaisList extends Component {
   renderRows() {
     const list = this.props.animais || [];
 
+    if (list.length === 0) {
+      return (
+        <p>Usuários não encontrados</p>
+      );
+    }
+
     return list.map(item => (
       <tr key={item.codigo}>
         <td className="animal__list__foto">

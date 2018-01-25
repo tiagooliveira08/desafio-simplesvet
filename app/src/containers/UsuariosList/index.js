@@ -14,6 +14,12 @@ class UsuariosList extends Component {
   renderRows() {
     const list = this.props.usuarios || [];
 
+    if (list.length === 0) {
+      return (
+        <p>Usuários não encontrados</p>
+      );
+    }
+
     return list.map(item => (
       <tr key={item.codigo}>
         <td>{ item.nome }</td>
