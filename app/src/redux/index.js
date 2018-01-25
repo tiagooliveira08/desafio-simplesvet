@@ -7,6 +7,7 @@ import { reducer as authReducer } from './auth';
 import { reducer as racasReducer } from './racas';
 import { reducer as proprietariosReducer } from './proprietarios';
 import { reducer as usuariosReducer } from './usuarios';
+import { reducer as vacinasReducer } from './vacinas';
 
 export default combineReducers({
   form: formReducer,
@@ -16,4 +17,5 @@ export default combineReducers({
   racas: racasReducer,
   proprietarios: proprietariosReducer,
   usuarios: usuariosReducer,
+  vacinas: vacinasReducer,
 });
