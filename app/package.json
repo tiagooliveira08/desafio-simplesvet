@@ -9,6 +9,7 @@
     "@fortawesome/react-fontawesome": "^0.0.17",
     "apisauce": "^0.14.3",
     "bootstrap": "3",
+    "inputmask": "^3.3.11",
     "react": "^16.2.0",
     "react-bootstrap": "^0.32.0",
     "react-dom": "^16.2.0",

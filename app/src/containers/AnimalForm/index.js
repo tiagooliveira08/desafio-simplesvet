@@ -1,14 +1,30 @@
 import React, { Component } from 'react';
 import { reduxForm, Field, formValueSelector } from 'redux-form';
-import { UPLOADS_URL } from '../../services';
 import { connect } from 'react-redux';
+import Inputmask from 'inputmask';
 
+import { UPLOADS_URL } from '../../services';
 import './style.css';
 
 class AnimalForm extends Component {
     constructor(props) {
         super(props);
         this.onFotoButtonClick = this.onFotoButtonClick.bind(this);
+    }
+
+    componentDidMount() {
+        Inputmask('decimal', {
+            radixPoint:",",
+            groupSeparator: ".",
+            autoGroup: true,
+            digits: 3,
+            digitsOptional: true,
+            placeholder: '0',
+            rightAlign: false,
+            onBeforeMask: function (value, opts) {
+              return value;
+            }
+      }).mask(document.querySelectorAll('.form-control-peso'));
     }
 
     onFotoButtonClick(e) {
@@ -24,7 +40,9 @@ class AnimalForm extends Component {
         }
 
         if(this.props.foto) {
-            <img src={`${UPLOADS_URL}/${this.props.foto}`} id="animalFotoPreview" alt="Foto do Animal"/>
+            return (
+                <img src={`${UPLOADS_URL}/${this.props.foto}`} id="animalFotoPreview" alt="Foto do Animal"/>
+            );
         }
 
         return false;
@@ -53,7 +71,7 @@ class AnimalForm extends Component {
 
                             <div className="form-group">
                                 <label htmlFor="peso" className="control-label">Peso</label>
-                                <Field name="peso" component="input" type="text" placeholder="Informe o Peso" className="form-control" />
+                                <Field name="peso" component="input" type="text" placeholder="Informe o Peso" className="form-control-peso form-control" />
                             </div>
 
                             <div className="form-group">
