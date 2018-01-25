@@ -1,13 +1,23 @@
 import { toastr } from 'react-redux-toastr';
+
+import { Actions as ProprietariosAction } from '../proprietarios';
+import { Actions as RacasAction } from '../racas';
+
 import { service } from '../services';
-import { RacasAction, ProprietariosAction } from './index';
+
+export const types = {
+    GET_LIST: 'GET_ANIMAL_LIST',
+    GET_ENTRY: 'GET_ANIMAL_ENTRY',
+    UPLOAD_IMAGE: 'ANIMAL_IMAGE_UPLOADED',
+    CLEAN_ENTRY: 'CLEAN_CURRENT_ANIMAL'
+};
 
 export const getAnimalList = () => {
     return [
         RacasAction.getRacasList(),
         ProprietariosAction.getProprietariosList(),
         {
-            type: 'GET_ANIMAL_LIST',
+            type: types.GET_LIST,
             payload: service.get('/animais')
         },
     ];
@@ -18,7 +28,7 @@ export const getAnimalEntry = id => {
         RacasAction.getRacasList(),
         ProprietariosAction.getProprietariosList(),
         {
-            type: 'GET_ANIMAL_ENTRY',
+            type: types.GET_ENTRY,
             payload: service.get(`/animais/${id}`)
         }
     ];
@@ -31,7 +41,7 @@ export const uploadAnimalImage = image => {
 
         service.post('/upload', data, { headers: { 'content-type': 'multipart/form-data' } }).then(resp => {
             toastr.success('Sucesso', 'Imagem enviada para nossos servidores!');
-            dispatch({ type: 'ANIMAL_IMAGE_UPLOADED', payload: resp.data.file });
+            dispatch({ type: types.UPLOAD_IMAGE, payload: resp.data.file });
         })
         .catch(e => toastr.error('Erro!', e.response.data.error));
     }
@@ -65,5 +75,5 @@ export const deleteAnimal = id => {
 };
 
 export const cleanCurrentAnimal = () => ({
-    type: 'CLEAN_CURRENT_ANIMAL'
+    type: types.CLEAN_ENTRY
 });

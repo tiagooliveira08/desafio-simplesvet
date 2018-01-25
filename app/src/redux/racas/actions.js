@@ -1,6 +1,10 @@
 import { service } from '../services';
 
+export const types = {
+  GET_LIST: 'GET_RACAS_LIST',
+};
+
 export const getRacasList = () => ({
-    type: 'GET_RACAS_LIST',
+    type: types.GET_LIST,
     payload: service.get('/racas')
 });

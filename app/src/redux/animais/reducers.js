@@ -1,3 +1,5 @@
+import { types } from './actions';
+
 const INITIAL_STATE = { 
     list: [],
     current: {},
@@ -5,15 +7,15 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
     switch(action.type) {
-        case 'GET_ANIMAL_LIST' : 
+        case types.GET_LIST: 
             return { ...state, list: action.payload.data }
-        case 'GET_ANIMAL_ENTRY':
+        case types.GET_ENTRY:
             return {...state, current: action.payload.data };
-        case 'ANIMAL_IMAGE_UPLOADED':
+        case types.UPLOAD_IMAGE:
             const current = state.current;
             current.foto = action.payload;
             return {...state, current };
-        case 'CLEAN_CURRENT_ANIMAL': 
+        case types.CLEAN_ENTRY: 
             return { ...state, current: {} };
         default:
             return state;
