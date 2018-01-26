@@ -20,7 +20,13 @@ class TextField extends Component {
       },
     };
 
+    const isDate = {
+      alias: 'dd/mm/yyyy',
+      placeholder: '0',
+    };
+
     Inputmask('decimal', isDecimal).mask(document.querySelectorAll('.form-control--decimal'));
+    Inputmask('date', isDate).mask(document.querySelectorAll('.form-control--date'));
   }
 
   render() {
