@@ -16,6 +16,7 @@ export const getVacinasList = () => ({
 });
 
 export const getScheduledVacinasList = () => [
+  getVacinasList(),
   animaisAction.getAnimaisList(),
   usuariosAction.getUsuariosList(),
   {
@@ -62,3 +63,8 @@ export const applyVacina = values => (dispatch) => {
     })
     .catch(() => toastr.error('Erro', 'Erro ao aplicar vacinação'));
 };
+
+export const getVacinasData = () => [
+  getVacinasList(),
+  animaisAction.getAnimalList(),
+];

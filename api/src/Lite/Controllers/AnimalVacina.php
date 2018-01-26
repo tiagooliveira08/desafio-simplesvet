@@ -49,20 +49,20 @@ class AnimalVacina
         $body = $request->getParsedBody();
 
         $usuario = new UsuarioEntity;
-        $usuario->setCodigo($body['codigo_usuario']);
+        $usuario->setCodigo($body['usuario']);
 
         $vacina = new VacinaEntity;
-        $vacina->setCodigo($body['codigo_vacina']);
+        $vacina->setCodigo($body['vacina']);
 
         $animal = new AnimalEntity;
-        $animal->setCodigo($body['codigo_animal']);
+        $animal->setCodigo($body['animal']);
 
         $animalVacina = new AnimalVacinaEntity;
         $animalVacina->setUsuario($usuario);
         $animalVacina->setAnimal($animal);
         $animalVacina->setVacina($vacina);
         $animalVacina->setDataProgramacao($body['data_programacao']);
-        $animalVacina->setDataAplicacao($body['data_aplicacao']);
+        $animalVacina->setDataAplicacao($body['data_programacao']);
 
         $data = AnimalVacinaModel::insert($animalVacina);
         $code = ($data['status']) ? 201 : 500;
@@ -89,10 +89,10 @@ class AnimalVacina
         $codigo = $request->getAttribute('codigo');
 
         $usuario = new UsuarioEntity;
-        $usuario->setCodigo($body['codigo_usuario']);
+        $usuario->setCodigo($body['usuario']);
 
         $animal = new AnimalEntity;
-        $animal->setCodigo($body['codigo_animal']);
+        $animal->setCodigo($body['animal']);
     
         $animalVacina = new AnimalVacinaEntity();
         $animalVacina->setCodigo($codigo);
@@ -101,6 +101,14 @@ class AnimalVacina
 
         $data = AnimalVacinaModel::aplicar($animalVacina);
         $code = ($data['status']) ? 200 : 500;
+
+        return $response->withJson($data, $code);
+    }
+
+    public function scheduled(Request $request, Response $response, $args)
+    {
+        $data = AnimalVacinaModel::getScheduled();
+        $code = count($data) > 0 ? 200 : 404;
 
         return $response->withJson($data, $code);
     }

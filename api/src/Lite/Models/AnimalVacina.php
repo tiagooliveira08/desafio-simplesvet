@@ -147,4 +147,28 @@ class AnimalVacina
         }
         return $return;
     }
+
+    public function getScheduled()
+    {
+        $return = [];
+      
+        try {
+            $mysql = new GDbMysql();
+
+            $return = $mysql->executeAll(
+                "
+                SELECT anv_int_codigo as codigo, 
+                       ani_int_codigo as codigo_animal, 
+                       vac_int_codigo as codigo_vacina, 
+                       anv_dat_programacao as data_programacao, 
+                       anv_dti_aplicacao as data_aplicacao, 
+                       usu_int_codigo as codigo_usuario 
+                FROM vw_animal_vacina"
+            );
+        } catch (GDbException $e) {
+            echo $e->getError();
+        }
+      
+        return $return;
+    }
 }

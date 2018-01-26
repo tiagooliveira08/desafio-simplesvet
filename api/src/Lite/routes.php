@@ -45,6 +45,7 @@ $app->group('/vacinas', function () {
     $this->get('/aplicacao/{codigo}', AnimalVacina::class . ':show');
     $this->delete('/aplicacao/{codigo}', AnimalVacina::class . ':destroy');
     $this->post('/aplicacao/{codigo}/aplicar', AnimalVacina::class . ':aplicar');
+    $this->get('/scheduled', AnimalVacina::class . ':scheduled');
 });
 
 $app->group('/racas', function () {
