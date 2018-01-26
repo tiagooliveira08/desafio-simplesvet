@@ -16,7 +16,7 @@ class ProprietariosList extends Component {
 
     if (list.length === 0) {
       return (
-        <p>Usuários não encontrados</p>
+        <p>Proprietários não encontrados</p>
       );
     }
 
