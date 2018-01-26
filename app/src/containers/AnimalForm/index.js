@@ -17,7 +17,7 @@ import { UPLOADS_URL } from '../../service';
 import { TextField, ComboField } from '../../components';
 import './style.css';
 
-const required = value => (value ? undefined : 'Campo de preenchimento obrigatório!');
+import { required } from '../../helpers/validations';
 
 class AnimalForm extends Component {
   constructor(props) {
