@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import './style.css';
 
 const Navigation = props => (
-  <div className="navigation">
+  <div className={`navigation ${props.openMenuMobile && 'navigation--open'}`}>
     <div className="container">
       <ul className="navigation__list nav navbar-nav">
         <li className="navigation__item">
@@ -46,6 +46,7 @@ const Navigation = props => (
 
 Navigation.propTypes = {
   onLogoutClick: PropTypes.func.isRequired,
+  openMenuMobile: PropTypes.bool.isRequired,
 };
 
 export default Navigation;

@@ -11,7 +11,7 @@ import './style.css';
 
 import { service } from '../../service';
 import { actions as authActions } from '../../redux/auth';
-import { Navigation } from '../../components';
+import { Navigation, Icon } from '../../components';
 import { logo } from '../../images';
 
 import {
@@ -27,8 +27,20 @@ import {
 } from '../index';
 
 class SimplesVet extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      openMenuMobile: false,
+    };
+  }
   componentWillMount() {
     if (this.props.auth.user) { this.props.validate(this.props.auth.user.token); }
+    this.toggleMenuMobile = this.toggleMenuMobile.bind(this);
+  }
+
+  toggleMenuMobile() {
+    this.setState({ openMenuMobile: !this.state.openMenuMobile });
   }
 
   render() {
@@ -47,10 +59,17 @@ class SimplesVet extends Component {
                   <img src={logo} alt="logo" className="header__logo__image" />
                 </a>
               </div>
-              <a href="#/" className="header__menu-toggler">Abrir Menu</a>
+              <Icon
+                color="default"
+                onClick={() => this.toggleMenuMobile()}
+                icon="faBars"
+              />
             </div>
           </div>
-          <Navigation onLogoutClick={() => this.props.logout()} />
+          <Navigation
+            onLogoutClick={() => this.props.logout()}
+            openMenuMobile={this.state.openMenuMobile}
+          />
           <div className="page-container">
             <Router>
               <div>

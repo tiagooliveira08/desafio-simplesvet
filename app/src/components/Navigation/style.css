@@ -1,5 +1,12 @@
 .navigation {
     background: #444d58;
+    height: 0;
+    overflow: hidden;
+    transition: all .2s linear;
+}
+
+.navigation--open {
+    height: 324px;
 }
 
 .navigation__list {
@@ -12,9 +19,18 @@
     padding: 16px 18px 15px 18px !important;
     background: transparent;
     border: 0;
+    width: 100%;
+    text-align: left;
 }
 
 .navigation__item__link:hover {
     color: #ffffff !important;
     background: #55616f !important;
+}
+
+
+@media (min-width: 750px) {
+    .navigation {
+        height: auto;
+    }
 }
