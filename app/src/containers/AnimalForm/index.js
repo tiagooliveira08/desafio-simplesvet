@@ -68,15 +68,18 @@ class AnimalForm extends Component {
                 validate={[required]}
               />
 
-              <div className="form-group">
-                <div htmlFor="vivo" className="control-label">Está vivo?</div>
-                <div className="radio-inline">
-                  <Field name="vivo" component="input" type="radio" value="S" checked /> Sim
-                </div>
-                <div className="radio-inline">
-                  <Field name="vivo" component="input" type="radio" value="N" /> Não
-                </div>
-              </div>
+              <Field
+                id="vivo"
+                label="Está vivo?"
+                name="vivo"
+                component={ComboField}
+                className="form-control"
+                validate={[required]}
+              >
+                <option value="">O animal está vivo?</option>
+                <option value="S">Sim, o animal está vivo!</option>
+                <option value="N">Não, não está mais vivo!</option>
+              </Field>
 
               <Field
                 id="peso"
@@ -89,6 +92,7 @@ class AnimalForm extends Component {
               />
 
               <Field
+                id="raca"
                 label="Raça"
                 name="raca"
                 component={ComboField}
@@ -105,6 +109,7 @@ class AnimalForm extends Component {
 
 
               <Field
+                id="proprietario"
                 label="Proprietário"
                 name="proprietario"
                 component={ComboField}

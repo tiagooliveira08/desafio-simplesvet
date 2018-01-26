@@ -7,6 +7,8 @@ import AnimaisCreate from './AnimaisCreate';
 import AnimalForm from './AnimalForm';
 import UsuariosList from './UsuariosList';
 import ProprietariosList from './ProprietariosList';
+import VacinacaoList from './VacinacaoList';
+import VacinacaoCreate from './VacinacaoCreate';
 
 export {
   App,
@@ -18,4 +20,6 @@ export {
   ProprietariosList,
   AnimalForm,
   AnimaisCreate,
+  VacinacaoList,
+  VacinacaoCreate,
 };

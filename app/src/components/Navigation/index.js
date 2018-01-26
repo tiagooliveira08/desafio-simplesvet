@@ -30,7 +30,7 @@ const Navigation = props => (
           </a>
         </li>
         <li className="navigation__item">
-          <a href="#/vacinas" className="navigation__item__link">
+          <a href="#/vacinacao" className="navigation__item__link">
             <FontAwesomeIcon icon={Icons.faMedkit} /> Vacinas
           </a>
         </li>

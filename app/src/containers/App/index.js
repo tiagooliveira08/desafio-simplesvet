@@ -22,6 +22,8 @@ import {
   UsuariosList,
   ProprietariosList,
   AnimaisCreate,
+  VacinacaoList,
+  VacinacaoCreate,
 } from '../index';
 
 class SimplesVet extends Component {
@@ -58,6 +60,8 @@ class SimplesVet extends Component {
                 <Route path="/animais/:id" component={AnimaisEdit} exact />
                 <Route path="/usuarios" component={UsuariosList} exact />
                 <Route path="/proprietarios" component={ProprietariosList} exact />
+                <Route path="/vacinacao" component={VacinacaoList} exact />
+                <Route path="/nova-vacinacao" component={VacinacaoCreate} exact />
               </div>
             </Router>
           </div>

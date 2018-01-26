@@ -17,7 +17,7 @@ export const getVacinasList = () => ({
 
 export const getScheduledVacinasList = () => [
   getVacinasList(),
-  animaisAction.getAnimaisList(),
+  animaisAction.getAnimalList(),
   usuariosAction.getUsuariosList(),
   {
     type: types.GET_SCHEDULED_LIST,
