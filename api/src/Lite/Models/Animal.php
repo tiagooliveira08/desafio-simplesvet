@@ -23,10 +23,9 @@ class Animal
                     ani_var_foto as foto 
                 FROM vw_animal");
 
-            $return = array_map(function($animal){ 
+            $return = array_map(function ($animal) {
                 return self::formatAnimalResponse($animal);
-             }, $return);
-             
+            }, $return);
         } catch (GDbException $e) {
             echo $e->getError();
         }
@@ -154,7 +153,7 @@ class Animal
         return $return;
     }
 
-    private static function formatAnimalResponse($animal) 
+    private static function formatAnimalResponse($animal)
     {
         $formated = [
             'peso' => number_format($animal['peso'], 3, ',', '.')
