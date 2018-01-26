@@ -4,7 +4,8 @@
     "history.push",
     "handleSubmit",
     "initialValues",
-    "initialValues.foto"
+    "initialValues.foto",
+    "foto"
   ] }] */
 
 import React, { Component } from 'react';
@@ -52,7 +53,6 @@ class AnimalForm extends Component {
   }
 
   render() {
-    console.log(this.props.foto);
     return (
       <form onSubmit={this.props.handleSubmit}>
         <div className="box-body">
@@ -69,13 +69,13 @@ class AnimalForm extends Component {
               />
 
               <div className="form-group">
-                <label htmlFor="vivo" className="control-label">Está vivo?</label>
-                <label className="radio-inline">
-                  <Field name="vivo" component="input" type="radio" value="S" checked/> Sim
-                </label>
-                <label className="radio-inline">
+                <div htmlFor="vivo" className="control-label">Está vivo?</div>
+                <div className="radio-inline">
+                  <Field name="vivo" component="input" type="radio" value="S" checked /> Sim
+                </div>
+                <div className="radio-inline">
                   <Field name="vivo" component="input" type="radio" value="N" /> Não
-                </label>
+                </div>
               </div>
 
               <Field
@@ -88,7 +88,13 @@ class AnimalForm extends Component {
                 validate={[required]}
               />
 
-              <Field label="Raça" name="raca" component={ComboField} className="form-control" validate={[required]}>
+              <Field
+                label="Raça"
+                name="raca"
+                component={ComboField}
+                className="form-control"
+                validate={[required]}
+              >
                 <option value="">Selecione a raça do animal</option>
                 {this.props.racas.map(raca => (
                   <option value={raca.codigo} key={raca.codigo}>
@@ -98,7 +104,13 @@ class AnimalForm extends Component {
               </Field>
 
 
-              <Field label="Proprietário" name="proprietario" component={ComboField} className="form-control" validate={[required]}>
+              <Field
+                label="Proprietário"
+                name="proprietario"
+                component={ComboField}
+                className="form-control"
+                validate={[required]}
+              >
                 <option value="">Selecione o proprietário do animal</option>
                 {this.props.proprietarios.map(proprietario => (
                   <option value={proprietario.codigo} key={proprietario.codigo}>
@@ -111,7 +123,7 @@ class AnimalForm extends Component {
             <div className="col-xs-12 col-md-4">
               <div className="form-group">
                 <div className="anima-form__foto">
-                  <label htmlFor="fotoSeletor" className="control-label">Foto</label>
+                  <div htmlFor="fotoSeletor" className="control-label">Foto</div>
                   <Field name="foto" component="input" type="hidden" className="form-control" />
                   {this.renderAnimalFoto()}
                   <button onClick={this.onFotoButtonClick} className="btn btn-default btn-block">{ this.props.foto ? 'Alterar Foto' : 'Adicionar Foto' }</button>
@@ -140,7 +152,6 @@ class AnimalForm extends Component {
 }
 
 AnimalForm.propTypes = {
-  foto: PropTypes.string,
   proprietarios: PropTypes.instanceOf(Array).isRequired,
   racas: PropTypes.instanceOf(Array).isRequired,
   fotoUpload: PropTypes.func.isRequired,

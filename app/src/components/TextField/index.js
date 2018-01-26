@@ -26,7 +26,7 @@ class TextField extends Component {
   render() {
     return (
       <div className="form-group">
-        <label htmlFor={this.props.id} className="control-label">{this.props.label}</label>
+        <div htmlFor={this.props.id} className="control-label">{this.props.label}</div>
         <div>
           <input
             className={this.props.className}

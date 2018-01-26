@@ -33,7 +33,7 @@ export const scheduleVacina = values => () => {
 
       return toastr.success('Sucesso', 'Vacina agendada com sucesso');
     })
-    .catch(error => toastr.error('Erro', 'Erro ao agendar vacinação'));
+    .catch(() => toastr.error('Erro', 'Erro ao agendar vacinação'));
 };
 
 export const deleteScheduledVacina = id => (dispatch) => {
@@ -46,7 +46,7 @@ export const deleteScheduledVacina = id => (dispatch) => {
       dispatch(getScheduledVacinasList());
       return toastr.success('Sucesso', 'Vacinação apagada com sucesso');
     })
-    .catch(error => toastr.error('Error', 'Erro ao apagar vacinação'));
+    .catch(() => toastr.error('Error', 'Erro ao apagar vacinação'));
 };
 
 
@@ -60,5 +60,5 @@ export const applyVacina = values => (dispatch) => {
       dispatch(getScheduledVacinasList());
       return toastr.success('Sucesso', 'Vacina aplicada com sucesso');
     })
-    .catch(error => toastr.error('Erro', 'Erro ao aplicar vacinação'));
-}
+    .catch(() => toastr.error('Erro', 'Erro ao aplicar vacinação'));
+};

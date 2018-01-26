@@ -1,44 +1,47 @@
 /* eslint react/prop-types: [2,
-  { "ignore": ["meta", "meta.touched", "meta.error", "meta.warning", "field", "input", "children"] }] */
+  { "ignore":
+    [
+      "meta",
+      "meta.touched",
+      "meta.error",
+      "meta.warning",
+      "field",
+      "input",
+      "children"] }] */
 
-  import React, { Component } from 'react';
-  import PropTypes from 'prop-types';
-  import Inputmask from 'inputmask';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-  class ComboField extends Component {
-    render() {
-      return (
-        <div className="form-group">
-          <label htmlFor={this.props.id} className="control-label">{this.props.label}</label>
-          <div>
-            <select
-              className={this.props.className}
-              {...this.props.input}
-              {...this.props.field}
-            >
-              {this.props.children}
-            </select>
-            { this.props.meta.touched && (
-                (this.props.meta.error &&
-                  <span className="text-danger">{this.props.meta.error}</span>) ||
-                (this.props.meta.warning &&
-                  <span className="text-warning">{this.props.meta.warning}</span>)
-            ) }
-          </div>
-        </div>
-      );
-    }
-  }
+const ComboField = props => (
+  <div className="form-group">
+    <div htmlFor={props.id} className="control-label">{props.label}</div>
+    <div>
+      <select
+        className={props.className}
+        {...props.input}
+        {...props.field}
+      >
+        {props.children}
+      </select>
+      { props.meta.touched && (
+          (props.meta.error &&
+            <span className="text-danger">{props.meta.error}</span>) ||
+          (props.meta.warning &&
+            <span className="text-warning">{props.meta.warning}</span>)
+      ) }
+    </div>
+  </div>
+);
 
-  ComboField.propTypes = {
-    id: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
-    meta: PropTypes.instanceOf(Object).isRequired,
-    className: PropTypes.string,
-  };
+ComboField.propTypes = {
+  id: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  meta: PropTypes.instanceOf(Object).isRequired,
+  className: PropTypes.string,
+};
 
-  ComboField.defaultProps = {
-    className: 'form-control',
-  };
+ComboField.defaultProps = {
+  className: 'form-control',
+};
 
-  export default ComboField;
+export default ComboField;
