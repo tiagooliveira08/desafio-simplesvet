@@ -61,7 +61,10 @@ class AnimalVacina
         $animalVacina->setUsuario($usuario);
         $animalVacina->setAnimal($animal);
         $animalVacina->setVacina($vacina);
-        $animalVacina->setDataProgramacao($body['data_programacao']);
+
+        $data = $body['data_programacao'];
+        $data = \DateTime::createFromFormat('d/m/Y', $data);
+        $animalVacina->setDataProgramacao($data->format('Y-m-d'));
 
         $data = AnimalVacinaModel::insert($animalVacina);
         $code = ($data['status']) ? 201 : 500;
