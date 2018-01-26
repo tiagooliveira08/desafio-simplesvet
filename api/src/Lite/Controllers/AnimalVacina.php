@@ -62,7 +62,6 @@ class AnimalVacina
         $animalVacina->setAnimal($animal);
         $animalVacina->setVacina($vacina);
         $animalVacina->setDataProgramacao($body['data_programacao']);
-        $animalVacina->setDataAplicacao($body['data_programacao']);
 
         $data = AnimalVacinaModel::insert($animalVacina);
         $code = ($data['status']) ? 201 : 500;
