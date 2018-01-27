@@ -38,6 +38,7 @@ class TextField extends Component {
             className={this.props.className}
             {...this.props.input}
             {...this.props.field}
+            type={this.props.type}
           />
           { this.props.meta.touched && (
               (this.props.meta.error &&
@@ -56,10 +57,12 @@ TextField.propTypes = {
   label: PropTypes.string.isRequired,
   meta: PropTypes.instanceOf(Object).isRequired,
   className: PropTypes.string,
+  type: PropTypes.string,
 };
 
 TextField.defaultProps = {
   className: 'form-control',
+  type: 'text',
 };
 
 export default TextField;
