@@ -70,6 +70,7 @@ class VacinasList extends Component {
               });
             }}
             icon="faCheck"
+            hide={item.data_aplicacao}
           />
           <Icon
             color="danger"
